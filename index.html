@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+@font-face { font-family: "RomanaBT"; src: url("fonts/RomanaBT-Roman.ttf") format("truetype"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "RomanaBT"; src: url("fonts/RomanaBT-Bold.ttf") format("truetype"); font-weight: 700; font-display: swap; }
+@font-face { font-family: "Apercu"; src: url("fonts/Apercu-Light.otf") format("opentype"); font-weight: 300; font-display: swap; }
+@font-face { font-family: "Apercu"; src: url("fonts/Apercu-Regular.otf") format("opentype"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Apercu"; src: url("fonts/Apercu-Bold.otf") format("opentype"); font-weight: 700; font-display: swap; }
+html, body { margin: 0; padding: 0; background: #FDFCF8; }
+* { box-sizing: border-box; }
+a { color: #2F2B2B; text-decoration: none; }
+a:hover { color: #CA0000; }
+@keyframes lifFade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes lifDrift { from { opacity: 0; transform: translate3d(0, 26px, 0); } 60% { opacity: 1; } to { opacity: 1; transform: none; } }
+@keyframes lifBleed { from { opacity: 0; transform: scale(1.08); } to { opacity: 1; transform: scale(1); } }
+@keyframes lifPhrase { 0% { opacity: 0; transform: translateY(10px); } 18% { opacity: 1; transform: translateY(0); } 62% { opacity: 1; transform: translateY(0); } 100% { opacity: 0.12; transform: translateY(0); } }
+@keyframes lifPaper { from { opacity: 0; } to { opacity: 0.42; } }
+@keyframes lifDraw { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes lifNode { 0% { opacity: 0; transform: scale(0.62); } 60% { opacity: 1; transform: scale(1.07); } 100% { opacity: 1; transform: scale(1); } }
+@keyframes lifRing { 0% { transform: scale(1); opacity: 0.5; } 70% { transform: scale(1.55); opacity: 0; } 100% { transform: scale(1.55); opacity: 0; } }
+</style>
+</helmet>
+<div style="{{ stageStyle }}" onClick="{{ stageClick }}">
+
+  <div style="position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none">
+    <sc-if value="{{ s1 }}" hint-placeholder-val="{{ true }}">
+      <img src="img/ecstatic.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 12%;animation:lifBleed 3600ms cubic-bezier(.16,.7,.2,1) both" />
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.34) 0%,rgba(0,0,0,0.12) 40%,rgba(0,0,0,0.55) 100%)"></div>
+    </sc-if>
+    <sc-if value="{{ s8 }}" hint-placeholder-val="{{ false }}">
+      <img src="img/two-women.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 32%;animation:lifBleed 4200ms cubic-bezier(.16,.7,.2,1) both" />
+      <div style="position:absolute;inset:0;background:linear-gradient(200deg,rgba(0,0,0,0.42) 0%,rgba(0,0,0,0.08) 46%,rgba(0,0,0,0.5) 100%)"></div>
+    </sc-if>
+    <sc-if value="{{ grain }}" hint-placeholder-val="{{ false }}">
+      <img src="img/paper.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;mix-blend-mode:multiply;animation:lifPaper 1400ms ease both" />
+    </sc-if>
+  </div>
+
+  <div style="position:absolute;top:0;left:0;right:0;height:1px;background:rgba(47,43,43,0.10);z-index:5">
+    <div style="{{ progressStyle }}"></div>
+  </div>
+
+  <header style="position:relative;display:flex;align-items:center;gap:10px;padding:clamp(20px,3vw,36px) clamp(22px,6vw,88px) 0">
+    <img src="assets/lif-mark-black.png" alt="" style="{{ markStyle }}" />
+    <img src="assets/lif-wordmark.png" alt="Love It Forward" style="{{ wordmarkStyle }}" />
+  </header>
+
+  <main style="position:relative;flex:1 1 0;min-height:0;display:flex;align-items:flex-start;overflow-y:auto;overflow-x:clip;padding:clamp(16px,3vh,44px) clamp(22px,6vw,88px)">
+
+    <sc-if value="{{ s1 }}" hint-placeholder-val="{{ true }}">
+      <section data-screen-label="01 The thought" style="width:100%;max-width:1280px;margin:auto;animation:lifFade 900ms ease both">
+        <div style="position:relative;min-height:min(46vh,400px);color:#FDFCF8;font-family:Apercu,sans-serif;font-weight:700;font-size:clamp(15px,3.4vw,54px);line-height:1.02;letter-spacing:-0.015em;text-shadow:0 2px 40px rgba(0,0,0,0.45)">
+          <span style="position:absolute;left:0;top:2%;white-space:nowrap;animation:lifPhrase 2200ms cubic-bezier(.33,0,.2,1) 400ms both">You came to mind.</span>
+          <span style="position:absolute;left:11%;top:34%;white-space:nowrap;animation:lifPhrase 2200ms cubic-bezier(.33,0,.2,1) 2600ms both">You would love this.</span>
+          <span style="position:absolute;right:3%;top:19%;white-space:nowrap;animation:lifPhrase 2200ms cubic-bezier(.33,0,.2,1) 4800ms both">This is so you.</span>
+          <span style="position:absolute;left:5%;top:68%;white-space:nowrap;animation:lifPhrase 2200ms cubic-bezier(.33,0,.2,1) 7000ms both">You have to try this.</span>
+        </div>
+        <h1 style="margin:clamp(26px,5vh,70px) 0 0;width:100%;max-width:none;font-family:RomanaBT,serif;font-weight:400;font-size:clamp(17px,3.8vw,64px);line-height:1.08;letter-spacing:-0.018em;color:#FDFCF8;white-space:nowrap;text-shadow:0 2px 44px rgba(0,0,0,0.45);animation:lifDrift 1600ms cubic-bezier(.16,.7,.2,1) 9400ms both"><span style="white-space:nowrap">Love It Forward</span> turns that thought into something real.</h1>
+      </section>
+    </sc-if>
+    <sc-if value="{{ s2 }}" hint-placeholder-val="{{ false }}">
+      <section data-screen-label="02 The bridge" style="width:100%;max-width:1280px;margin:auto;animation:lifFade 900ms ease both">
+        <div style="display:flex;flex-direction:column;gap:clamp(9px,1.5vh,18px);font-family:Apercu,sans-serif;letter-spacing:-0.012em">
+          <span style="max-width:46ch;font-weight:700;font-size:clamp(15px,1.75vw,26px);line-height:1.16;text-wrap:balance;animation:lifDrift 1500ms cubic-bezier(.16,.7,.2,1) 300ms both">Think about the last thing you found and immediately wanted <span style="white-space:nowrap">someone else to know about it.</span></span>
+          <div style="display:flex;flex-direction:column;gap:clamp(3px,0.6vh,7px);font-weight:300;font-size:clamp(13px,1.55vw,22px);line-height:1.3;color:#6B6664">
+            <span style="white-space:nowrap;animation:lifDrift 1300ms cubic-bezier(.16,.7,.2,1) 1800ms both">A brand you loved.</span>
+            <span style="white-space:nowrap;animation:lifDrift 1300ms cubic-bezier(.16,.7,.2,1) 2300ms both">A coffee worth telling someone about.</span>
+            <span style="white-space:nowrap;animation:lifDrift 1300ms cubic-bezier(.16,.7,.2,1) 2800ms both">A treatment that changed how you felt.</span>
+            <span style="white-space:nowrap;animation:lifDrift 1300ms cubic-bezier(.16,.7,.2,1) 3300ms both">A class you wanted a friend to try.</span>
+          </div>
+          <span style="margin-top:clamp(5px,0.9vh,11px);font-weight:400;font-size:clamp(14px,1.8vw,25px);line-height:1.2;white-space:nowrap;animation:lifDrift 1500ms cubic-bezier(.16,.7,.2,1) 4200ms both">And then someone came to mind.</span>
+          <span style="font-weight:400;font-size:clamp(14px,1.8vw,25px);line-height:1.2;white-space:nowrap;animation:lifDrift 1500ms cubic-bezier(.16,.7,.2,1) 5200ms both">You knew they would love it too.</span>
+        </div>
+        <p style="margin:clamp(24px,5vh,68px) 0 0;width:100%;max-width:none;text-align:left;white-space:nowrap;font-family:RomanaBT,serif;font-size:clamp(20px,3.25vw,50px);line-height:1.05;letter-spacing:-0.018em;text-wrap:pretty;animation:lifDrift 2200ms cubic-bezier(.16,.7,.2,1) 6600ms both"><span style="white-space:nowrap">Love It Forward</span> gives that thought somewhere to go.</p>
+        <div style="margin-top:clamp(18px,3.4vh,46px);font-family:Apercu,sans-serif;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#6B6664;animation:lifFade 1400ms ease 8600ms both">Let me show you.</div>
+      </section>
+    </sc-if>
+    <sc-if value="{{ s3 }}" hint-placeholder-val="{{ false }}">
+      <section data-screen-label="03 The product" style="width:100%;max-width:1240px;margin:auto;animation:lifFade 900ms ease both">
+        <div style="font-family:Apercu,sans-serif;font-weight:700;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#CA0000;animation:lifFade 1000ms ease 200ms both">The product</div>
+        <p style="margin:clamp(18px,3.4vh,44px) 0 0;font-family:RomanaBT,serif;font-size:clamp(23px,3.2vw,46px);line-height:1.14;letter-spacing:-0.012em;text-wrap:balance;animation:lifDrift 2000ms cubic-bezier(.16,.7,.2,1) 700ms both"><span style="white-space:nowrap">Love It Forward</span> is a customer-funded, measurable introduction from one person to another.</p>
+        <div style="margin-top:clamp(28px,6vh,86px);font-family:Apercu,sans-serif;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#6B6664;animation:lifFade 1400ms ease 3000ms both">Here&#8217;s how it works.</div>
+      </section>
+    </sc-if>
+    <sc-if value="{{ s4 }}" hint-placeholder-val="{{ false }}">
+      <section data-screen-label="04 Give" style="width:100%;max-width:1280px;margin:auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(28px,5vw,86px);align-items:center;animation:lifFade 900ms ease both">
+        <div>
+          <div style="font-family:Apercu,sans-serif;font-weight:700;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#6B6664;animation:lifFade 900ms ease 150ms both">01 &#183; Give</div>
+          <h2 style="margin:clamp(12px,2vh,20px) 0 0;font-family:RomanaBT,serif;font-weight:400;font-size:clamp(28px,3.8vw,54px);line-height:1.06;letter-spacing:-0.015em;white-space:nowrap;animation:lifDrift 1500ms cubic-bezier(.16,.7,.2,1) 200ms both">Someone comes to mind.</h2>
+          <div style="margin-top:clamp(18px,3vh,38px);display:flex;flex-direction:column;gap:clamp(8px,1.4vh,16px);max-width:44ch;font-family:Apercu,sans-serif;font-size:clamp(15px,1.5vw,20px);line-height:1.45;color:#4B4646">
+            <span style="text-wrap:pretty;animation:lifDrift 1300ms cubic-bezier(.16,.7,.2,1) 900ms both">They choose the person.</span>
+            <span style="text-wrap:pretty;animation:lifDrift 1300ms cubic-bezier(.16,.7,.2,1) 1500ms both">They tell them why.</span>
+            <span style="text-wrap:pretty;animation:lifDrift 1300ms cubic-bezier(.16,.7,.2,1) 2100ms both">They put something toward whatever they choose.</span>
+          </div>
+        </div>
+        <div data-hold="1" style="max-width:500px;width:100%;background:#FFFFFF;border:1px solid rgba(47,43,43,0.12);box-shadow:0 24px 54px -38px rgba(47,43,43,0.45);padding:clamp(18px,2.2vw,30px);font-family:Apercu,sans-serif;animation:lifDrift 1500ms cubic-bezier(.16,.7,.2,1) 700ms both">
+          <div style="font-family:RomanaBT,serif;font-size:clamp(21px,2.2vw,30px);line-height:1.12">Who came to mind?</div>
+          <div style="margin-top:clamp(10px,1.6vh,17px);font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#6B6664">Name</div>
+          <div style="padding:10px 0 12px;border-bottom:1px solid rgba(47,43,43,0.2);font-size:clamp(16px,1.5vw,20px);font-weight:300">Brad Nyman</div>
+          <div style="margin-top:14px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#6B6664">Email</div>
+          <div style="padding:10px 0 12px;border-bottom:1px solid rgba(47,43,43,0.2);font-size:clamp(16px,1.5vw,20px);font-weight:300">brad@nyman.co</div>
+          <div style="margin-top:clamp(10px,1.6vh,17px);font-family:RomanaBT,serif;font-size:clamp(19px,2vw,27px);line-height:1.12">Why them?</div>
+          <div style="padding:10px 0 12px;border-bottom:1px solid rgba(47,43,43,0.2);font-size:clamp(15px,1.45vw,19px);font-weight:300;line-height:1.4;text-wrap:pretty">You have been carrying everyone this year.</div>
+          <div style="margin-top:12px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px">
+            <div onClick="{{ a15 }}" style="{{ amt15 }}">$15</div>
+            <div onClick="{{ a25 }}" style="{{ amt25 }}">$25</div>
+            <div onClick="{{ a50 }}" style="{{ amt50 }}">$50</div>
+            <div onClick="{{ aOther }}" style="{{ amtOther }}">Other</div>
+          </div>
+          <div onClick="{{ next }}" style="margin-top:12px;padding:12px 26px;border-radius:4px;background:#FFAC00;color:#2F2B2B;text-align:center;font-weight:700;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;cursor:pointer" style-hover="background:#2F2B2B;box-shadow:inset 0 2px 6px rgba(255,255,255,0.16);color:#FDFCF8">Continue to payment</div>
+        </div>
+      </section>
+    </sc-if>
+    <sc-if value="{{ s5 }}" hint-placeholder-val="{{ false }}">
+      <section data-screen-label="05 Receive" style="width:100%;max-width:1280px;margin:auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(28px,5vw,86px);align-items:center;animation:lifFade 900ms ease both">
+        <div>
+          <div style="font-family:Apercu,sans-serif;font-weight:700;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#6B6664;animation:lifFade 900ms ease 150ms both">02 &#183; Receive</div>
+          <h2 style="margin:clamp(12px,2vh,20px) 0 0;font-family:RomanaBT,serif;font-weight:400;font-size:clamp(26px,3.4vw,48px);line-height:1.06;letter-spacing:-0.015em;text-wrap:balance;animation:lifDrift 1500ms cubic-bezier(.16,.7,.2,1) 200ms both">The relationship arrives first.</h2>
+          <p style="margin:clamp(18px,3vh,38px) 0 0;max-width:44ch;font-family:Apercu,sans-serif;font-size:clamp(15px,1.5vw,20px);line-height:1.45;color:#4B4646;text-wrap:pretty;animation:lifDrift 1400ms cubic-bezier(.16,.7,.2,1) 1000ms both">The receiver discovers who thought of them and why before they see the amount.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:clamp(10px,1.6vh,18px);max-width:520px;width:100%">
+          <div style="background:#FFFFFF;border:1px solid rgba(47,43,43,0.12);box-shadow:0 24px 54px -38px rgba(47,43,43,0.45);padding:clamp(18px,2.2vw,28px);font-family:Apercu,sans-serif;animation:lifDrift 1400ms cubic-bezier(.16,.7,.2,1) 600ms both">
+            <div style="font-family:RomanaBT,serif;font-size:clamp(22px,2.4vw,34px);line-height:1.1">Someone thought of you.</div>
+            <div style="margin-top:10px;font-size:clamp(14px,1.35vw,18px);color:#6B6664">A note is waiting for you.</div>
+          </div>
+          <div style="font-family:Apercu,sans-serif;font-size:15px;color:#CA0000;animation:lifFade 800ms ease 1900ms both">&#8595;</div>
+          <div style="background:#FFFFFF;border:1px solid rgba(47,43,43,0.12);box-shadow:0 24px 54px -38px rgba(47,43,43,0.45);padding:clamp(18px,2.2vw,28px);font-family:Apercu,sans-serif;animation:lifDrift 1400ms cubic-bezier(.16,.7,.2,1) 2300ms both">
+            <div style="font-family:RomanaBT,serif;font-size:clamp(26px,3.2vw,46px);line-height:1.04">It was Amy.</div>
+          </div>
+          <div style="font-family:Apercu,sans-serif;font-size:15px;color:#CA0000;animation:lifFade 800ms ease 3600ms both">&#8595;</div>
+          <div style="background:#FFFFFF;border:1px solid rgba(47,43,43,0.12);box-shadow:0 24px 54px -38px rgba(47,43,43,0.45);padding:clamp(18px,2.2vw,28px);animation:lifDrift 1400ms cubic-bezier(.16,.7,.2,1) 4000ms both">
+            <p style="margin:0;border-left:2px solid #FFAC00;padding-left:20px;font-family:RomanaBT,serif;font-size:clamp(17px,1.85vw,25px);line-height:1.42;text-wrap:pretty">&#8220;You have been carrying everyone this year. This one is only yours.&#8221;</p>
+          </div>
+        </div>
+      </section>
+    </sc-if>
+    <sc-if value="{{ s6 }}" hint-placeholder-val="{{ false }}">
+      <section data-screen-label="06 Choose" style="width:100%;max-width:1280px;margin:auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(28px,5vw,86px);align-items:center;animation:lifFade 900ms ease both">
+        <div>
+          <div style="font-family:Apercu,sans-serif;font-weight:700;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#6B6664;animation:lifFade 900ms ease 150ms both">03 &#183; Choose</div>
+          <h2 style="margin:clamp(12px,2vh,20px) 0 0;font-family:RomanaBT,serif;font-weight:400;font-size:clamp(26px,3.4vw,48px);line-height:1.06;letter-spacing:-0.015em;text-wrap:balance;animation:lifDrift 1500ms cubic-bezier(.16,.7,.2,1) 200ms both">Then they choose for themselves.</h2>
+          <div style="margin-top:clamp(18px,3vh,38px);display:flex;flex-direction:column;gap:clamp(8px,1.4vh,16px);max-width:44ch;font-family:Apercu,sans-serif;font-size:clamp(15px,1.5vw,20px);line-height:1.45;color:#4B4646">
+            <span style="text-wrap:pretty;animation:lifDrift 1300ms cubic-bezier(.16,.7,.2,1) 900ms both">The funded value follows them into the brand.</span>
+            <span style="text-wrap:pretty;animation:lifDrift 1300ms cubic-bezier(.16,.7,.2,1) 1500ms both">They shop normally.</span>
+            <span style="text-wrap:pretty;animation:lifDrift 1300ms cubic-bezier(.16,.7,.2,1) 2100ms both">It applies at checkout.</span>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:clamp(7px,1.1vh,13px);max-width:520px;width:100%">
+          <div style="background:#FFFFFF;border:1px solid rgba(47,43,43,0.12);box-shadow:0 24px 54px -38px rgba(47,43,43,0.45);padding:clamp(13px,1.6vw,19px);font-family:Apercu,sans-serif;animation:lifDrift 1400ms cubic-bezier(.16,.7,.2,1) 600ms both">
+            <div style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#6B6664">What&#8217;s waiting</div>
+            <div style="margin-top:10px;font-family:RomanaBT,serif;font-size:clamp(19px,2.1vw,29px);line-height:1.16;text-wrap:pretty">Amy put $25 toward whatever you choose.</div>
+          </div>
+          <div style="font-family:Apercu,sans-serif;font-size:15px;color:#CA0000;animation:lifFade 800ms ease 1900ms both">&#8595;</div>
+          <div style="background:#FFFFFF;border:1px solid #E5E2DE;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;color:#111;animation:lifDrift 1400ms cubic-bezier(.16,.7,.2,1) 2300ms both">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 18px;border-bottom:1px solid #E5E2DE">
+              <span style="font-size:11px;letter-spacing:0.28em;text-transform:uppercase">The Brand</span>
+              <span style="font-size:12px;color:#666">Shop &#183; Bag</span>
+            </div>
+            <div style="padding:14px 18px;display:flex;justify-content:space-between;gap:14px;font-size:clamp(13px,1.25vw,16px)"><span>Everyday Set</span><span>$64.00</span></div>
+          </div>
+          <div style="font-family:Apercu,sans-serif;font-size:15px;color:#CA0000;animation:lifFade 800ms ease 3600ms both">&#8595;</div>
+          <div style="background:#FFFFFF;border:1px solid #E5E2DE;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;color:#111;padding:clamp(13px,1.6vw,19px);animation:lifDrift 1400ms cubic-bezier(.16,.7,.2,1) 4000ms both">
+            <div style="font-size:11px;letter-spacing:0.28em;text-transform:uppercase;color:#666">Checkout</div>
+            <div style="margin-top:11px;display:flex;justify-content:space-between;gap:16px;padding-bottom:10px;border-bottom:1px solid #E5E2DE;font-size:clamp(13px,1.3vw,17px)"><span>Order</span><span>$64.00</span></div>
+            <div style="display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-bottom:1px solid #E5E2DE;font-size:clamp(13px,1.3vw,17px)"><span><span style="white-space:nowrap">Love It Forward</span> from Amy</span><span>&#8722;$25.00</span></div>
+            <div style="display:flex;justify-content:space-between;gap:16px;padding-top:10px;font-size:clamp(14px,1.4vw,18px);font-weight:700"><span>Total</span><span>$39.00</span></div>
+          </div>
+        </div>
+      </section>
+    </sc-if>
+    <sc-if value="{{ s7 }}" hint-placeholder-val="{{ false }}">
+      <section data-screen-label="07 Thank and continue" style="width:100%;max-width:1280px;margin:auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(28px,5vw,86px);align-items:center;animation:lifFade 900ms ease both">
+        <div>
+          <div style="font-family:Apercu,sans-serif;font-weight:700;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#6B6664;animation:lifFade 900ms ease 150ms both">04 &#183; Thank + continue</div>
+          <h2 style="margin:clamp(12px,2vh,20px) 0 0;font-family:RomanaBT,serif;font-weight:400;font-size:clamp(28px,3.8vw,54px);line-height:1.06;letter-spacing:-0.015em;white-space:nowrap;animation:lifDrift 1500ms cubic-bezier(.16,.7,.2,1) 200ms both">The feeling comes back.</h2>
+          <div style="margin-top:clamp(18px,3vh,38px);display:flex;flex-direction:column;gap:clamp(10px,1.6vh,18px);max-width:46ch;font-family:Apercu,sans-serif;font-size:clamp(15px,1.5vw,20px);line-height:1.45;color:#4B4646">
+            <span style="text-wrap:pretty;animation:lifDrift 1300ms cubic-bezier(.16,.7,.2,1) 900ms both">They can thank the person who thought of them.</span>
+            <span style="text-wrap:pretty;animation:lifDrift 1300ms cubic-bezier(.16,.7,.2,1) 1600ms both">And if someone else comes to mind, a completely new <span style="white-space:nowrap">Love It Forward</span> can begin.</span>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:clamp(10px,1.6vh,18px);max-width:520px;width:100%">
+          <div style="background:#FFFFFF;border:1px solid rgba(47,43,43,0.12);box-shadow:0 24px 54px -38px rgba(47,43,43,0.45);padding:clamp(16px,2vw,24px);font-family:Apercu,sans-serif;animation:lifDrift 1400ms cubic-bezier(.16,.7,.2,1) 600ms both">
+            <div style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#6B6664">Gratitude</div>
+            <div style="margin-top:10px;display:flex;align-items:center;gap:clamp(12px,2vw,20px)">
+              <div style="font-family:RomanaBT,serif;font-size:clamp(19px,2.1vw,29px);line-height:1.14">Sent to Amy. <span style="color:#CA0000">&#9829;</span></div>
+              <img src="img/gratitude-note.png" alt="A small token of gratitude." style="height:clamp(52px,6vw,78px);width:auto;mix-blend-mode:multiply;transform:rotate(-1.2deg)" />
+            </div>
+          </div>
+          <div style="font-family:Apercu,sans-serif;font-size:15px;color:#CA0000;animation:lifFade 800ms ease 1900ms both">&#8595;</div>
+          <div style="background:#FFFFFF;border:1px solid rgba(47,43,43,0.12);box-shadow:0 24px 54px -38px rgba(47,43,43,0.45);padding:clamp(16px,2vw,24px);font-family:Apercu,sans-serif;animation:lifDrift 1400ms cubic-bezier(.16,.7,.2,1) 2300ms both">
+            <div style="font-family:RomanaBT,serif;font-size:clamp(20px,2.2vw,31px);line-height:1.12">Someone else come to mind?</div>
+            <div style="margin-top:10px;font-size:clamp(14px,1.35vw,18px);color:#6B6664">Tell them why.</div>
+          </div>
+          <div style="font-family:Apercu,sans-serif;font-size:15px;color:#CA0000;animation:lifFade 800ms ease 3600ms both">&#8595;</div>
+          <div style="padding:16px 30px;border-radius:4px;background:#CA0000;color:#FDFCF8;text-align:center;font-family:Apercu,sans-serif;font-weight:700;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;animation:lifDrift 1400ms cubic-bezier(.16,.7,.2,1) 4000ms both">Love it forward</div>
+        </div>
+      </section>
+    </sc-if>
+    <sc-if value="{{ s8 }}" hint-placeholder-val="{{ false }}">
+      <section data-screen-label="08 What people share" style="width:100%;max-width:1280px;margin:auto;animation:lifFade 1200ms ease both">
+        <div style="display:flex;flex-direction:column;gap:clamp(10px,2vh,26px);color:#FDFCF8;text-shadow:0 2px 40px rgba(0,0,0,0.5)">
+          <span style="font-family:Apercu,sans-serif;font-weight:700;font-size:clamp(14px,3.6vw,44px);line-height:1.1;letter-spacing:-0.012em;white-space:nowrap;animation:lifDrift 1800ms cubic-bezier(.16,.7,.2,1) 500ms both">People don&#8217;t share brands.</span>
+          <span style="font-family:RomanaBT,serif;font-size:clamp(14px,2.9vw,40px);line-height:1.14;letter-spacing:-0.012em;white-space:nowrap;animation:lifDrift 2000ms cubic-bezier(.16,.7,.2,1) 2000ms both">They share what they love with people they love.</span>
+        </div>
+      </section>
+    </sc-if>
+    <sc-if value="{{ s9 }}" hint-placeholder-val="{{ false }}">
+      <section data-screen-label="09 Why now" style="width:100%;margin:auto;display:flex;align-items:center;gap:clamp(20px,4vw,72px);animation:lifFade 900ms ease both">
+        <div style="flex:1 1 0;min-width:0;max-width:46ch">
+          <p style="margin:0;max-width:24ch;font-family:RomanaBT,serif;font-size:clamp(20px,2.9vw,42px);line-height:1.08;letter-spacing:-0.016em;text-wrap:pretty;color:#2F2B2B;animation:lifDrift 2000ms cubic-bezier(.16,.7,.2,1) 400ms both">Most things we end up loving came through someone.</p>
+          <p style="margin:clamp(18px,3.2vh,42px) 0 0;max-width:42ch;font-family:Apercu,sans-serif;font-size:clamp(12px,1.15vw,16px);line-height:1.55;color:#6B6664;text-wrap:pretty;animation:lifDrift 1800ms cubic-bezier(.16,.7,.2,1) 2600ms both">A friend. A sister. Someone who knew us well enough to say, &#8220;This is so you.&#8221;</p>
+          <p style="margin:clamp(12px,2.4vh,30px) 0 0;max-width:42ch;font-family:Apercu,sans-serif;font-size:clamp(12px,1.15vw,16px);line-height:1.55;color:#6B6664;text-wrap:pretty;animation:lifDrift 1800ms cubic-bezier(.16,.7,.2,1) 4800ms both">More and more can be made to feel personal. Being thought of actually is.</p>
+          <p style="margin:clamp(20px,3.8vh,52px) 0 0;max-width:26ch;font-family:RomanaBT,serif;font-size:clamp(18px,2.2vw,32px);line-height:1.12;letter-spacing:-0.014em;color:#2F2B2B;text-wrap:pretty;animation:lifDrift 2200ms cubic-bezier(.16,.7,.2,1) 7000ms both">That kind of trust is where a buying journey can begin.</p>
+        </div>
+        <img src="img/gratitude-photo.jpg" alt="" style="flex:0 0 auto;align-self:center;display:block;width:47vw;height:min(72vh,620px);margin-right:calc(-1 * clamp(22px,6vw,88px));object-fit:cover;object-position:50% 38%;animation:lifBleed 3200ms cubic-bezier(.16,.7,.2,1) 600ms both" />
+      </section>
+    </sc-if>
+    <sc-if value="{{ s10 }}" hint-placeholder-val="{{ false }}">
+      <section data-screen-label="10 Brands lose the introduction" style="width:100%;max-width:1400px;margin:auto;animation:lifFade 900ms ease both">
+        <h2 style="margin:0;font-family:Apercu,sans-serif;font-weight:700;font-size:clamp(14px,2.2vw,32px);line-height:1.08;letter-spacing:-0.018em;white-space:nowrap;animation:lifDrift 1600ms cubic-bezier(.16,.7,.2,1) 200ms both">Your customers are already bringing people into your brand.</h2>
+        <div style="margin-top:clamp(8px,1.4vh,18px);font-family:RomanaBT,serif;font-size:clamp(14px,2vw,28px);line-height:1.1;letter-spacing:-0.012em;color:#CA0000;white-space:nowrap;animation:lifDrift 1600ms cubic-bezier(.16,.7,.2,1) 1200ms both">The problem is, you lose the introduction.</div>
+        <div style="margin-top:clamp(13px,2.2vh,30px);display:flex;flex-direction:column;gap:1px;font-family:Apercu,sans-serif;font-size:clamp(12px,1.3vw,19px);line-height:1.34;color:#4B4646">
+          <span style="white-space:nowrap;animation:lifDrift 1200ms cubic-bezier(.16,.7,.2,1) 1900ms both">Someone recommends your brand.</span>
+          <span style="white-space:nowrap;animation:lifDrift 1200ms cubic-bezier(.16,.7,.2,1) 2300ms both">Their friend buys.</span>
+          <span style="white-space:nowrap;animation:lifDrift 1200ms cubic-bezier(.16,.7,.2,1) 2700ms both">You see the order.</span>
+          <span style="white-space:nowrap;color:#2F2B2B;font-weight:700;animation:lifDrift 1200ms cubic-bezier(.16,.7,.2,1) 3100ms both">You lose the introduction.</span>
+        </div>
+        <div style="margin-top:clamp(13px,2.2vh,30px);display:flex;flex-direction:column;gap:clamp(6px,1vh,12px);width:100%">
+          <div style="display:grid;grid-template-columns:clamp(108px,13vw,190px) minmax(0,1fr);gap:clamp(14px,2.6vw,40px);align-items:baseline;padding-top:clamp(7px,1.1vh,11px);border-top:1px solid rgba(47,43,43,0.18);animation:lifDrift 1300ms cubic-bezier(.16,.7,.2,1) 3800ms both">
+            <div style="font-family:Apercu,sans-serif;font-weight:700;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#6B6664;white-space:nowrap">Gift cards</div>
+            <div style="display:flex;flex-wrap:wrap;gap:2px clamp(14px,2.4vw,36px);font-family:Apercu,sans-serif;font-size:clamp(12px,1.25vw,18px);line-height:1.38">
+              <span style="color:#2F2B2B;white-space:nowrap">The value gets used.</span>
+              <span style="color:#6B6664;white-space:nowrap">The relationship disappears.</span>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:clamp(108px,13vw,190px) minmax(0,1fr);gap:clamp(14px,2.6vw,40px);align-items:baseline;padding-top:clamp(7px,1.1vh,11px);border-top:1px solid rgba(47,43,43,0.18);animation:lifDrift 1300ms cubic-bezier(.16,.7,.2,1) 4200ms both">
+            <div style="font-family:Apercu,sans-serif;font-weight:700;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#6B6664;white-space:nowrap">Word of mouth</div>
+            <div style="display:flex;flex-wrap:wrap;gap:2px clamp(14px,2.4vw,36px);font-family:Apercu,sans-serif;font-size:clamp(12px,1.25vw,18px);line-height:1.38">
+              <span style="color:#2F2B2B;white-space:nowrap">You know it drives growth.</span>
+              <span style="color:#6B6664;white-space:nowrap">You can&#8217;t see who brought whom.</span>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:clamp(108px,13vw,190px) minmax(0,1fr);gap:clamp(14px,2.6vw,40px);align-items:baseline;padding-top:clamp(7px,1.1vh,11px);border-top:1px solid rgba(47,43,43,0.18);animation:lifDrift 1300ms cubic-bezier(.16,.7,.2,1) 4600ms both">
+            <div style="font-family:Apercu,sans-serif;font-weight:700;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#6B6664;white-space:nowrap">Community</div>
+            <div style="display:flex;flex-wrap:wrap;gap:2px clamp(14px,2.4vw,36px);font-family:Apercu,sans-serif;font-size:clamp(12px,1.25vw,18px);line-height:1.38">
+              <span style="color:#2F2B2B;white-space:nowrap">The connections are real.</span>
+              <span style="color:#6B6664;white-space:nowrap">You can&#8217;t see how they move.</span>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:clamp(14px,2.6vh,36px);display:flex;flex-direction:column;gap:1px;width:100%;font-family:Apercu,sans-serif;font-weight:700;font-size:clamp(12px,1.5vw,22px);line-height:1.26;letter-spacing:-0.012em;animation:lifDrift 1600ms cubic-bezier(.16,.7,.2,1) 5400ms both">
+          <span style="white-space:nowrap">You see the customer.</span>
+          <span style="white-space:nowrap;color:#CA0000">You don&#8217;t see the trust that got them there.</span>
+          <span style="white-space:nowrap;color:#CA0000">You don&#8217;t see what that introduction leads to.</span>
+        </div>
+        <p style="margin:clamp(14px,2.6vh,36px) 0 0;width:100%;max-width:96ch;font-family:RomanaBT,serif;font-size:clamp(13px,1.5vw,21px);line-height:1.26;letter-spacing:-0.01em;text-wrap:pretty;animation:lifDrift 1800ms cubic-bezier(.16,.7,.2,1) 6400ms both"><span style="white-space:nowrap">Love It Forward</span> keeps the introduction connected so brands can finally see, measure and build on the growth already happening when customers share what they love with people they love.</p>
+      </section>
+    </sc-if>
+    <sc-if value="{{ s11 }}" hint-placeholder-val="{{ false }}">
+      <section data-screen-label="11 Redemption is the hinge" style="width:100%;max-width:1280px;margin:auto;animation:lifFade 900ms ease both">
+        <div style="display:flex;flex-direction:column;gap:3px;font-family:RomanaBT,serif;font-size:clamp(16px,2.2vw,31px);line-height:1.12;letter-spacing:-0.014em">
+          <span style="white-space:nowrap;color:#6B6664;animation:lifDrift 1500ms cubic-bezier(.16,.7,.2,1) 200ms both">A gift card ends at redemption.</span>
+          <span style="white-space:nowrap;animation:lifDrift 1500ms cubic-bezier(.16,.7,.2,1) 1000ms both"><span style="white-space:nowrap">Love It Forward</span> begins at redemption.</span>
+        </div>
+        <p style="margin:clamp(9px,1.5vh,16px) 0 0;max-width:62ch;font-family:Apercu,sans-serif;font-size:clamp(12px,1.15vw,16px);line-height:1.45;color:#4B4646;text-wrap:pretty;animation:lifDrift 1400ms cubic-bezier(.16,.7,.2,1) 1800ms both">Built on proven human behavior. Designed to become a new, measurable, customer-funded growth channel.</p>
+        <div style="margin-top:clamp(22px,4.4vh,58px)">
+          <div style="position:relative;height:clamp(30px,4vw,46px);animation:lifFade 1000ms ease 2400ms both">
+            <span style="position:absolute;left:30%;bottom:0;width:1px;height:100%;background:rgba(47,43,43,0.22)"></span>
+            <span style="position:absolute;left:calc(30% - 13px);top:0;width:26px;height:1px;background:#2F2B2B"></span>
+            <div style="position:absolute;left:calc(30% + 22px);top:-6px;font-family:Apercu,sans-serif;font-weight:700;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#2F2B2B">Gift card ends</div>
+          </div>
+          <div style="position:relative;display:grid;grid-template-columns:repeat(5,minmax(0,1fr))">
+            <span style="position:absolute;top:clamp(17px,2.3vw,29px);left:10%;right:70%;height:1px;background:rgba(47,43,43,0.22);transform-origin:left center;animation:lifDraw 700ms cubic-bezier(.33,0,.2,1) 2400ms both"></span>
+            <span style="position:absolute;top:clamp(17px,2.3vw,29px);left:30%;right:50%;height:1px;background:rgba(12,122,75,0.45);transform-origin:left center;animation:lifDraw 700ms cubic-bezier(.33,0,.2,1) 3600ms both"></span>
+            <span style="position:absolute;top:clamp(17px,2.3vw,29px);left:50%;right:30%;height:1px;background:rgba(255,172,0,0.55);transform-origin:left center;animation:lifDraw 700ms cubic-bezier(.33,0,.2,1) 4400ms both"></span>
+            <span style="position:absolute;top:clamp(17px,2.3vw,29px);left:70%;right:10%;height:1px;background:rgba(202,0,0,0.55);transform-origin:left center;animation:lifDraw 700ms cubic-bezier(.33,0,.2,1) 5200ms both"></span>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:10px">
+              <div style="position:relative;width:clamp(34px,4.6vw,58px);height:clamp(34px,4.6vw,58px);border-radius:50%;background:#C9C5C0;animation:lifNode 900ms cubic-bezier(.16,.7,.2,1) 2000ms both">
+                
+              </div>
+              <div style="max-width:19ch;text-align:center;font-family:Apercu,sans-serif;font-weight:700;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;line-height:1.5;color:#8A8583;animation:lifFade 900ms ease 2200ms both">Purchase</div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:10px">
+              <div style="position:relative;width:clamp(34px,4.6vw,58px);height:clamp(34px,4.6vw,58px);border-radius:50%;background:#2F2B2B;animation:lifNode 900ms cubic-bezier(.16,.7,.2,1) 2800ms both">
+                
+              </div>
+              <div style="max-width:19ch;text-align:center;font-family:Apercu,sans-serif;font-weight:700;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;line-height:1.5;color:#2F2B2B;animation:lifFade 900ms ease 3000ms both">Redemption</div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:10px">
+              <div style="position:relative;width:clamp(34px,4.6vw,58px);height:clamp(34px,4.6vw,58px);border-radius:50%;background:#0C7A4B;box-shadow:inset 0 2px 6px rgba(255,255,255,0.28);animation:lifNode 900ms cubic-bezier(.16,.7,.2,1) 3900ms both">
+                
+              </div>
+              <div style="max-width:19ch;text-align:center;font-family:Apercu,sans-serif;font-weight:700;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;line-height:1.5;color:#4B4646;animation:lifFade 900ms ease 4100ms both">Gratitude</div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:10px">
+              <div style="position:relative;width:clamp(34px,4.6vw,58px);height:clamp(34px,4.6vw,58px);border-radius:50%;background:#FFAC00;box-shadow:inset 0 2px 6px rgba(255,255,255,0.28);animation:lifNode 900ms cubic-bezier(.16,.7,.2,1) 4700ms both">
+                
+              </div>
+              <div style="max-width:19ch;text-align:center;font-family:Apercu,sans-serif;font-weight:700;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;line-height:1.5;color:#4B4646;animation:lifFade 900ms ease 4900ms both">Someone else comes to mind</div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:10px">
+              <div style="position:relative;width:clamp(34px,4.6vw,58px);height:clamp(34px,4.6vw,58px);border-radius:50%;background:#CA0000;animation:lifNode 900ms cubic-bezier(.16,.7,.2,1) 5500ms both">
+                <span style="position:absolute;inset:-6px;border-radius:50%;border:1px solid rgba(202,0,0,0.5);animation:lifRing 2600ms ease-out 6400ms infinite"></span>
+              </div>
+              <div style="max-width:19ch;text-align:center;font-family:Apercu,sans-serif;font-weight:700;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;line-height:1.5;color:#CA0000;animation:lifFade 900ms ease 5700ms both">New funded <span style="white-space:nowrap">Love It Forward</span></div>
+            </div>
+          </div>
+          <div style="position:relative;height:clamp(34px,4.6vw,56px)">
+            <span style="position:absolute;left:30%;right:10%;top:0;bottom:12px;border:1px solid rgba(202,0,0,0.5);border-top:0;border-radius:0 0 clamp(24px,4vw,48px) clamp(24px,4vw,48px);transform-origin:right center;animation:lifDraw 1100ms cubic-bezier(.33,0,.2,1) 6200ms both"></span>
+            <span style="position:absolute;left:calc(30% - 4px);top:-1px;width:9px;height:9px;border-left:1px solid #CA0000;border-top:1px solid #CA0000;transform:rotate(45deg);animation:lifFade 700ms ease 7200ms both"></span>
+            <div style="position:absolute;left:0;right:0;bottom:-4px;text-align:center;font-family:RomanaBT,serif;font-size:clamp(12px,1.3vw,18px);color:#CA0000;animation:lifFade 1200ms ease 7400ms both">A new funded introduction begins.</div>
+          </div>
+          <div style="margin-top:clamp(12px,2vh,24px);text-align:center;font-family:Apercu,sans-serif;font-size:clamp(12px,1.1vw,15px);line-height:1.45;color:#6B6664;text-wrap:pretty;animation:lifFade 1400ms ease 8000ms both">Every continuation is a new person, a new reason and a new funded act.</div>
+        </div>
+      </section>
+    </sc-if>
+    <sc-if value="{{ s12 }}" hint-placeholder-val="{{ false }}">
+      <section data-screen-label="12 A new growth channel" style="width:100%;min-height:min(72vh,620px);margin:auto;position:relative;display:flex;align-items:center;animation:lifFade 700ms ease both">
+        <div style="position:absolute;top:-24%;left:24%;width:86%;height:124%;z-index:1;pointer-events:none;-webkit-mask-image:radial-gradient(ellipse 84% 80% at 58% 62%,#000 28%,rgba(0,0,0,0.5) 58%,transparent 90%);mask-image:radial-gradient(ellipse 84% 80% at 58% 62%,#000 28%,rgba(0,0,0,0.5) 58%,transparent 90%)">
+          <x-import component-from-global-scope="os-net" from="./osnet.js" sparse-count="3" grow-at="4600" style="{{ netFill }}" hint-size="100%,100%"></x-import>
+        </div>
+        <div style="position:absolute;inset:0;z-index:1;pointer-events:none">
+          <span style="position:absolute;left:62%;top:44%;width:16%;height:1px;background:#006298;opacity:0.2;transform-origin:left center;transform:rotate(-19deg);animation:lifDraw 1400ms ease 7600ms both"></span>
+          <span style="position:absolute;left:64%;top:56%;width:20%;height:1px;background:#0C7A4B;opacity:0.2;transform-origin:left center;transform:rotate(16deg);animation:lifDraw 1400ms ease 8400ms both"></span>
+          <span style="position:absolute;left:66%;top:34%;width:14%;height:1px;background:#FFAC00;opacity:0.24;transform-origin:left center;transform:rotate(-34deg);animation:lifDraw 1400ms ease 9200ms both"></span>
+          <div style="position:absolute;left:84%;top:24%;transform:translate(-50%,-50%) scale(1);animation:lifFade 1800ms ease 8000ms both">
+            <div style="position:relative;width:0;height:0">
+              <span style="position:absolute;left:-8px;top:-8px;width:16px;height:16px;border-radius:50%;background:#006298"></span>
+              <span style="position:absolute;left:-15px;top:-15px;width:30px;height:30px;border-radius:50%;border:1px solid #006298;opacity:0.32;animation:lifRing 3200ms ease-out 8900ms infinite"></span>
+              <span style="position:absolute;left:-29px;top:-19px;width:6px;height:6px;border-radius:50%;background:#006298;opacity:0.5"></span>
+              <span style="position:absolute;left:0;top:0;width:31px;height:1px;background:#006298;opacity:0.22;transform-origin:left center;transform:rotate(-148deg);animation:lifDraw 800ms ease 8300ms both"></span>
+              <span style="position:absolute;left:21px;top:-23px;width:6px;height:6px;border-radius:50%;background:#006298;opacity:0.5"></span>
+              <span style="position:absolute;left:0;top:0;width:31px;height:1px;background:#006298;opacity:0.22;transform-origin:left center;transform:rotate(-40deg);animation:lifDraw 800ms ease 8420ms both"></span>
+              <span style="position:absolute;left:-23px;top:17px;width:6px;height:6px;border-radius:50%;background:#006298;opacity:0.5"></span>
+              <span style="position:absolute;left:0;top:0;width:28px;height:1px;background:#006298;opacity:0.22;transform-origin:left center;transform:rotate(135deg);animation:lifDraw 800ms ease 8540ms both"></span>
+              <span style="position:absolute;left:23px;top:11px;width:6px;height:6px;border-radius:50%;background:#006298;opacity:0.5"></span>
+              <span style="position:absolute;left:0;top:0;width:30px;height:1px;background:#006298;opacity:0.22;transform-origin:left center;transform:rotate(28deg);animation:lifDraw 800ms ease 8660ms both"></span>
+              <span style="position:absolute;left:-1px;top:-33px;width:6px;height:6px;border-radius:50%;background:#006298;opacity:0.5"></span>
+              <span style="position:absolute;left:0;top:0;width:30px;height:1px;background:#006298;opacity:0.22;transform-origin:left center;transform:rotate(-86deg);animation:lifDraw 800ms ease 8780ms both"></span>
+            </div>
+          </div>
+          <div style="position:absolute;left:88%;top:72%;transform:translate(-50%,-50%) scale(1.14);animation:lifFade 1800ms ease 8800ms both">
+            <div style="position:relative;width:0;height:0">
+              <span style="position:absolute;left:-8px;top:-8px;width:16px;height:16px;border-radius:50%;background:#0C7A4B"></span>
+              <span style="position:absolute;left:-15px;top:-15px;width:30px;height:30px;border-radius:50%;border:1px solid #0C7A4B;opacity:0.32;animation:lifRing 3200ms ease-out 9700ms infinite"></span>
+              <span style="position:absolute;left:-29px;top:-19px;width:6px;height:6px;border-radius:50%;background:#0C7A4B;opacity:0.5"></span>
+              <span style="position:absolute;left:0;top:0;width:31px;height:1px;background:#0C7A4B;opacity:0.22;transform-origin:left center;transform:rotate(-148deg);animation:lifDraw 800ms ease 9100ms both"></span>
+              <span style="position:absolute;left:21px;top:-23px;width:6px;height:6px;border-radius:50%;background:#0C7A4B;opacity:0.5"></span>
+              <span style="position:absolute;left:0;top:0;width:31px;height:1px;background:#0C7A4B;opacity:0.22;transform-origin:left center;transform:rotate(-40deg);animation:lifDraw 800ms ease 9220ms both"></span>
+              <span style="position:absolute;left:-23px;top:17px;width:6px;height:6px;border-radius:50%;background:#0C7A4B;opacity:0.5"></span>
+              <span style="position:absolute;left:0;top:0;width:28px;height:1px;background:#0C7A4B;opacity:0.22;transform-origin:left center;transform:rotate(135deg);animation:lifDraw 800ms ease 9340ms both"></span>
+              <span style="position:absolute;left:23px;top:11px;width:6px;height:6px;border-radius:50%;background:#0C7A4B;opacity:0.5"></span>
+              <span style="position:absolute;left:0;top:0;width:30px;height:1px;background:#0C7A4B;opacity:0.22;transform-origin:left center;transform:rotate(28deg);animation:lifDraw 800ms ease 9460ms both"></span>
+              <span style="position:absolute;left:-1px;top:-33px;width:6px;height:6px;border-radius:50%;background:#0C7A4B;opacity:0.5"></span>
+              <span style="position:absolute;left:0;top:0;width:30px;height:1px;background:#0C7A4B;opacity:0.22;transform-origin:left center;transform:rotate(-86deg);animation:lifDraw 800ms ease 9580ms both"></span>
+            </div>
+          </div>
+          <div style="position:absolute;left:72%;top:13%;transform:translate(-50%,-50%) scale(0.84);animation:lifFade 1800ms ease 9600ms both">
+            <div style="position:relative;width:0;height:0">
+              <span style="position:absolute;left:-8px;top:-8px;width:16px;height:16px;border-radius:50%;background:#FFAC00"></span>
+              <span style="position:absolute;left:-15px;top:-15px;width:30px;height:30px;border-radius:50%;border:1px solid #FFAC00;opacity:0.32;animation:lifRing 3200ms ease-out 10500ms infinite"></span>
+              <span style="position:absolute;left:-29px;top:-19px;width:6px;height:6px;border-radius:50%;background:#FFAC00;opacity:0.5"></span>
+              <span style="position:absolute;left:0;top:0;width:31px;height:1px;background:#FFAC00;opacity:0.22;transform-origin:left center;transform:rotate(-148deg);animation:lifDraw 800ms ease 9900ms both"></span>
+              <span style="position:absolute;left:21px;top:-23px;width:6px;height:6px;border-radius:50%;background:#FFAC00;opacity:0.5"></span>
+              <span style="position:absolute;left:0;top:0;width:31px;height:1px;background:#FFAC00;opacity:0.22;transform-origin:left center;transform:rotate(-40deg);animation:lifDraw 800ms ease 10020ms both"></span>
+              <span style="position:absolute;left:-23px;top:17px;width:6px;height:6px;border-radius:50%;background:#FFAC00;opacity:0.5"></span>
+              <span style="position:absolute;left:0;top:0;width:28px;height:1px;background:#FFAC00;opacity:0.22;transform-origin:left center;transform:rotate(135deg);animation:lifDraw 800ms ease 10140ms both"></span>
+              <span style="position:absolute;left:23px;top:11px;width:6px;height:6px;border-radius:50%;background:#FFAC00;opacity:0.5"></span>
+              <span style="position:absolute;left:0;top:0;width:30px;height:1px;background:#FFAC00;opacity:0.22;transform-origin:left center;transform:rotate(28deg);animation:lifDraw 800ms ease 10260ms both"></span>
+              <span style="position:absolute;left:-1px;top:-33px;width:6px;height:6px;border-radius:50%;background:#FFAC00;opacity:0.5"></span>
+              <span style="position:absolute;left:0;top:0;width:30px;height:1px;background:#FFAC00;opacity:0.22;transform-origin:left center;transform:rotate(-86deg);animation:lifDraw 800ms ease 10380ms both"></span>
+            </div>
+          </div>
+        </div>
+        <div style="position:relative;z-index:2;max-width:min(520px,45%);pointer-events:none">
+          <div style="font-family:Apercu,sans-serif;font-weight:700;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#006298;animation:lifFade 1000ms ease 200ms both">A new growth channel</div>
+          <h2 style="margin:clamp(10px,1.6vh,18px) 0 0;max-width:24ch;font-family:Apercu,sans-serif;font-weight:700;font-size:clamp(19px,2.6vw,37px);line-height:1.06;letter-spacing:-0.018em;text-wrap:pretty;animation:lifDrift 1800ms cubic-bezier(.16,.7,.2,1) 600ms both">Your customers are already bringing you your next customers.</h2>
+          <p style="margin:clamp(12px,2.2vh,28px) 0 0;max-width:46ch;font-family:Apercu,sans-serif;font-size:clamp(13px,1.25vw,17px);line-height:1.5;color:#4B4646;text-wrap:pretty;animation:lifDrift 1600ms cubic-bezier(.16,.7,.2,1) 2400ms both">Brands spend to build trust. <span style="white-space:nowrap">Love It Forward</span> lets the people who already trust them carry it forward.</p>
+          <p style="margin:clamp(10px,1.8vh,22px) 0 0;max-width:46ch;font-family:Apercu,sans-serif;font-size:clamp(13px,1.25vw,17px);line-height:1.5;color:#2F2B2B;text-wrap:pretty;animation:lifDrift 1600ms cubic-bezier(.16,.7,.2,1) 4200ms both"><span style="white-space:nowrap">Love It Forward</span> turns those introductions into customer-funded, measurable growth.</p>
+          <div style="margin-top:clamp(16px,3vh,40px);display:flex;flex-direction:column;gap:1px;max-width:32ch;font-family:RomanaBT,serif;font-size:clamp(15px,1.8vw,26px);line-height:1.16;letter-spacing:-0.012em">
+            <span style="animation:lifDrift 2000ms cubic-bezier(.16,.7,.2,1) 6200ms both">The channel already exists.</span>
+            <span style="animation:lifDrift 2000ms cubic-bezier(.16,.7,.2,1) 7200ms both">Until now, it had no infrastructure.</span>
+          </div>
+          <div style="margin-top:clamp(14px,2.4vh,32px);display:flex;flex-direction:column;gap:0;font-family:Apercu,sans-serif;font-size:clamp(11px,1.05vw,14px);line-height:1.5;color:#6B6664;animation:lifFade 1600ms ease 9600ms both">
+            <span>Today: funded value.</span>
+            <span>Over time: someone can <span style="white-space:nowrap">Love It Forward</span> the exact product they loved.</span>
+          </div>
+        </div>
+      </section>
+    </sc-if>
+    <sc-if value="{{ s13 }}" hint-placeholder-val="{{ false }}">
+      <section data-screen-label="13 Commercial value" style="width:100%;max-width:1240px;margin:auto;animation:lifFade 900ms ease both">
+        <div style="font-family:RomanaBT,serif;font-size:clamp(15px,3.6vw,52px);line-height:1.12;letter-spacing:-0.015em">
+          <div style="white-space:nowrap;animation:lifDrift 2000ms cubic-bezier(.16,.7,.2,1) 300ms both">The customer funds the introduction.</div>
+          <div style="margin-top:clamp(10px,1.8vh,24px);white-space:nowrap;animation:lifDrift 2200ms cubic-bezier(.16,.7,.2,1) 2200ms both">The brand earns what happens next.</div>
+        </div>
+        <div style="margin-top:clamp(24px,4.4vh,60px);display:flex;flex-wrap:wrap;gap:10px clamp(20px,4vw,52px);font-family:Apercu,sans-serif;font-weight:700;font-size:clamp(14px,1.6vw,22px);letter-spacing:-0.01em">
+          <span style="animation:lifFade 1200ms ease 4200ms both">Trusted discovery.</span>
+          <span style="animation:lifFade 1200ms ease 4600ms both">Measurable word of mouth.</span>
+          <span style="animation:lifFade 1200ms ease 5000ms both">New customer acquisition.</span>
+          <span style="animation:lifFade 1200ms ease 5400ms both">Community insight.</span>
+        </div>
+        <div style="margin-top:clamp(12px,2.2vh,28px);display:flex;flex-wrap:wrap;gap:2px clamp(12px,2vw,26px);font-family:Apercu,sans-serif;font-size:clamp(11px,1.05vw,14px);line-height:1.5;color:#6B6664;animation:lifFade 1400ms ease 6200ms both">
+          <span>No public discounting.</span>
+          <span>No referral theatre.</span>
+        </div>
+        <div style="margin-top:clamp(13px,2.2vh,30px);font-family:Apercu,sans-serif;font-size:clamp(13px,1.2vw,17px);color:#CA0000;animation:lifFade 1400ms ease 6200ms both">Have love. Will share.</div>
+      </section>
+    </sc-if>
+    <sc-if value="{{ s14 }}" hint-placeholder-val="{{ false }}">
+      <section data-screen-label="14 Founder why" style="width:100%;max-width:1280px;margin:auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(24px,4vw,64px);align-items:start;animation:lifFade 900ms ease both">
+        <div style="animation:lifBleed 2600ms cubic-bezier(.16,.7,.2,1) 200ms both">
+          <img src="img/amy-color.jpeg" alt="Amy" style="display:block;width:100%;height:min(68vh,700px);object-fit:cover;object-position:50% 18%" />
+        </div>
+        <div>
+          <div style="font-family:Apercu,sans-serif;font-weight:700;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#CA0000;animation:lifFade 1000ms ease 200ms both">I&#8217;ve been where you are.</div>
+          <p style="margin:clamp(9px,1.5vh,16px) 0 0;max-width:30ch;font-family:Apercu,sans-serif;font-weight:700;font-size:clamp(17px,2vw,28px);line-height:1.1;letter-spacing:-0.016em;text-wrap:pretty;animation:lifDrift 1600ms cubic-bezier(.16,.7,.2,1) 600ms both">I&#8217;ve built and operated consumer businesses from the ground up.</p>
+          <div style="margin-top:clamp(9px,1.5vh,17px);display:flex;flex-direction:column;gap:clamp(5px,0.9vh,10px);max-width:54ch;font-family:Apercu,sans-serif;font-size:clamp(13px,1.15vw,16px);line-height:1.45;color:#4B4646">
+            <span style="text-wrap:pretty;animation:lifDrift 1300ms cubic-bezier(.16,.7,.2,1) 1400ms both">I founded a business that grew to more than 100 locations.</span>
+            <span style="text-wrap:pretty;animation:lifDrift 1300ms cubic-bezier(.16,.7,.2,1) 2000ms both">I know what it takes to create something people love and how much growth happens because one person brings another in.</span>
+            <span style="text-wrap:pretty;animation:lifDrift 1300ms cubic-bezier(.16,.7,.2,1) 2300ms both">That growth is real.</span>
+            <span style="text-wrap:pretty;animation:lifDrift 1300ms cubic-bezier(.16,.7,.2,1) 3100ms both">It just hasn&#8217;t had infrastructure.</span>
+          </div>
+          <div style="margin-top:clamp(9px,1.5vh,17px);display:flex;flex-direction:column;gap:3px;max-width:44ch;font-family:RomanaBT,serif;font-size:clamp(15px,1.55vw,21px);line-height:1.18">
+            <span style="text-wrap:pretty;animation:lifDrift 1500ms cubic-bezier(.16,.7,.2,1) 3900ms both">Could a business do more than create a transaction?</span>
+            <span style="text-wrap:pretty;animation:lifDrift 1500ms cubic-bezier(.16,.7,.2,1) 4800ms both">Could it make it easier for people to do something good for someone else?</span>
+          </div>
+          <div style="margin-top:clamp(9px,1.5vh,17px);display:flex;flex-direction:column;gap:1px;font-family:Apercu,sans-serif;font-size:clamp(13px,1.15vw,16px);line-height:1.45;color:#4B4646">
+            <span style="animation:lifFade 1200ms ease 5800ms both">Giving feels good.</span>
+            <span style="animation:lifFade 1200ms ease 6200ms both">Being thought of feels good.</span>
+            <span style="animation:lifFade 1200ms ease 6600ms both">And one act of generosity can inspire another.</span>
+          </div>
+          <div style="margin-top:clamp(9px,1.5vh,17px);max-width:44ch;font-family:RomanaBT,serif;font-size:clamp(15px,1.55vw,21px);line-height:1.18;text-wrap:pretty;animation:lifDrift 1600ms cubic-bezier(.16,.7,.2,1) 7400ms both">I wanted to know if that feeling could become a behavior.</div>
+          <div style="margin-top:clamp(9px,1.5vh,17px);font-family:Apercu,sans-serif;font-weight:700;font-size:clamp(14px,1.45vw,20px);letter-spacing:-0.01em;animation:lifDrift 1800ms cubic-bezier(.16,.7,.2,1) 8400ms both">So I built a business around it.</div>
+        </div>
+      </section>
+    </sc-if>
+    <sc-if value="{{ s15 }}" hint-placeholder-val="{{ false }}">
+      <section data-screen-label="15 Lifehood" style="width:100%;max-width:1400px;margin:auto;display:grid;grid-template-columns:max-content minmax(320px,1fr);gap:clamp(18px,2.6vw,40px);justify-content:center;align-items:start;animation:lifFade 900ms ease both">
+        <div style="display:flex;flex-direction:column;align-items:center;animation:lifBleed 2800ms cubic-bezier(.16,.7,.2,1) 200ms both">
+          <img src="img/lifehood-v2.png" alt="Lifehood, Los Angeles" style="display:block;align-self:flex-start;flex:0 0 auto;height:min(64vh,620px);width:auto;max-width:100%;object-fit:contain" />
+          <div style="margin-top:11px;text-align:center;font-family:Apercu,sans-serif;font-weight:700;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#6B6664">Lifehood &#183; Los Angeles &#183; 2020</div>
+        </div>
+        <div>
+          <h2 style="margin:0;max-width:24ch;font-family:Apercu,sans-serif;font-weight:700;font-size:clamp(17px,1.95vw,27px);line-height:1.1;letter-spacing:-0.014em;text-wrap:balance;animation:lifDrift 1500ms cubic-bezier(.16,.7,.2,1) 300ms both">Before <span style="white-space:nowrap">Love It Forward</span>, there was Lifehood.</h2>
+          <div style="margin-top:clamp(11px,1.9vh,22px);display:flex;flex-direction:column;gap:clamp(6px,1vh,12px);max-width:70ch;font-family:Apercu,sans-serif;font-size:clamp(12px,1.15vw,16px);line-height:1.45;color:#4B4646">
+            <span style="text-wrap:pretty;animation:lifDrift 1300ms cubic-bezier(.16,.7,.2,1) 1200ms both">In 2020, I opened a wellness center in Los Angeles around one simple idea: make it easy to do something good for someone else.</span>
+            <span style="text-wrap:pretty;animation:lifDrift 1200ms cubic-bezier(.16,.7,.2,1) 2100ms both">Customers could anonymously send an experience to someone they cared about.</span>
+            <span style="text-wrap:pretty;animation:lifDrift 1200ms cubic-bezier(.16,.7,.2,1) 2700ms both">The receiver discovered who had thought of them.</span>
+            <span style="text-wrap:pretty;animation:lifDrift 1200ms cubic-bezier(.16,.7,.2,1) 3300ms both">Then they could choose someone else.</span>
+          </div>
+          <div style="margin-top:clamp(11px,1.9vh,22px);font-family:Apercu,sans-serif;font-weight:700;font-size:clamp(13px,1.4vw,19px);letter-spacing:-0.01em;animation:lifDrift 1500ms cubic-bezier(.16,.7,.2,1) 4100ms both">And something happened.</div>
+          <div style="margin-top:clamp(11px,1.9vh,22px);padding-left:clamp(14px,1.6vw,22px);border-left:2px solid #FFAC00;display:flex;flex-direction:column;gap:2px;font-family:RomanaBT,serif;font-size:clamp(14px,1.6vw,23px);line-height:1.22;animation:lifDrift 1500ms cubic-bezier(.16,.7,.2,1) 4600ms both">
+            <span style="text-wrap:pretty">People didn&#8217;t continue because we paid them to.</span>
+            <span style="text-wrap:pretty">They continued because someone else came to mind.</span>
+          </div>
+          <div style="margin-top:clamp(11px,1.9vh,22px);font-family:Apercu,sans-serif;font-weight:700;font-size:clamp(13px,1.4vw,19px);letter-spacing:-0.01em;text-wrap:pretty;animation:lifDrift 1700ms cubic-bezier(.16,.7,.2,1) 5400ms both">That behavior became the foundation for <span style="white-space:nowrap">Love It Forward</span>.</div>
+          <div style="margin-top:clamp(14px,2.4vh,32px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2.6vw,44px)">
+            <div style="padding-top:10px;border-top:1px solid rgba(47,43,43,0.2);animation:lifDrift 1100ms cubic-bezier(.16,.7,.2,1) 6000ms both">
+              <div style="font-family:RomanaBT,serif;font-size:clamp(24px,2.7vw,38px);line-height:1">143</div>
+              <div style="margin-top:6px;font-family:Apercu,sans-serif;font-weight:700;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;line-height:1.5;color:#6B6664">Real customers participated</div>
+            </div>
+            <div style="padding-top:10px;border-top:1px solid rgba(47,43,43,0.2);animation:lifDrift 1100ms cubic-bezier(.16,.7,.2,1) 6300ms both">
+              <div style="font-family:RomanaBT,serif;font-size:clamp(24px,2.7vw,38px);line-height:1">~70%</div>
+              <div style="margin-top:6px;font-family:Apercu,sans-serif;font-weight:700;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;line-height:1.5;color:#6B6664">Chose to continue</div>
+            </div>
+            <div style="padding-top:10px;border-top:1px solid rgba(47,43,43,0.2);display:flex;align-items:flex-end;animation:lifDrift 1100ms cubic-bezier(.16,.7,.2,1) 6600ms both">
+              <div style="display:flex;flex-direction:column;gap:3px;font-family:Apercu,sans-serif;font-weight:700;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;line-height:1.5;color:#6B6664">
+                <span>No incentive.</span>
+                <span>No discount.</span>
+                <span>No referral reward.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </sc-if>
+    <sc-if value="{{ s16 }}" hint-placeholder-val="{{ false }}">
+      <section data-screen-label="16 Built to sit lightly" style="width:100%;max-width:1280px;margin:auto;animation:lifFade 900ms ease both">
+        <div style="font-family:Apercu,sans-serif;font-weight:700;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#6B6664;animation:lifFade 1000ms ease 200ms both">Built to sit lightly</div>
+        <h2 style="margin:clamp(9px,1.5vh,17px) 0 0;font-family:Apercu,sans-serif;font-weight:700;font-size:clamp(18px,2.5vw,36px);line-height:1.06;letter-spacing:-0.018em;white-space:nowrap;animation:lifDrift 1600ms cubic-bezier(.16,.7,.2,1) 600ms both">Your stack stays your stack.</h2>
+        <div style="margin-top:clamp(11px,1.9vh,24px);display:flex;flex-direction:column;gap:clamp(5px,0.9vh,10px);max-width:66ch;font-family:Apercu,sans-serif;font-size:clamp(12px,1.2vw,17px);line-height:1.5;color:#4B4646">
+          <span style="text-wrap:pretty;animation:lifDrift 1400ms cubic-bezier(.16,.7,.2,1) 1600ms both"><span style="white-space:nowrap">Love It Forward</span> sits on top of the commerce infrastructure you already use.</span>
+          <span style="text-wrap:pretty;animation:lifDrift 1400ms cubic-bezier(.16,.7,.2,1) 2300ms both">We don&#8217;t replace checkout, payments, inventory, fulfillment or returns.</span>
+        </div>
+        <div style="margin-top:clamp(16px,2.8vh,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:clamp(14px,2.6vw,44px)">
+            <div style="padding-top:clamp(9px,1.4vh,13px);border-top:1px solid rgba(47,43,43,0.2);animation:lifDrift 1300ms cubic-bezier(.16,.7,.2,1) 3100ms both">
+              <div style="font-family:Apercu,sans-serif;font-weight:700;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#CA0000">Light setup</div>
+              <div style="margin-top:9px;font-family:Apercu,sans-serif;font-size:clamp(12px,1.15vw,16px);line-height:1.5;color:#4B4646;text-wrap:pretty">We connect the LIF experience to the moments that already exist in your customer journey.</div>
+            </div>
+            <div style="padding-top:clamp(9px,1.4vh,13px);border-top:1px solid rgba(47,43,43,0.2);animation:lifDrift 1300ms cubic-bezier(.16,.7,.2,1) 3500ms both">
+              <div style="font-family:Apercu,sans-serif;font-weight:700;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#CA0000">Business as usual</div>
+              <div style="margin-top:9px;font-family:Apercu,sans-serif;font-size:clamp(12px,1.15vw,16px);line-height:1.5;color:#4B4646;text-wrap:pretty">You keep running commerce. LIF carries the person, reason, reveal, gratitude and continuation.</div>
+            </div>
+            <div style="padding-top:clamp(9px,1.4vh,13px);border-top:1px solid rgba(47,43,43,0.2);animation:lifDrift 1300ms cubic-bezier(.16,.7,.2,1) 3900ms both">
+              <div style="font-family:Apercu,sans-serif;font-weight:700;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#CA0000">Pilot with us</div>
+              <div style="margin-top:9px;font-family:Apercu,sans-serif;font-size:clamp(12px,1.15vw,16px);line-height:1.5;color:#4B4646;text-wrap:pretty">For our first partner brands, we&#8217;re keeping the lift light and the learning shared. We&#8217;ll set it up with you, watch what happens and learn together.</div>
+            </div>
+        </div>
+        <div style="margin-top:clamp(16px,2.8vh,40px);display:flex;flex-direction:column;gap:1px;font-family:Apercu,sans-serif;font-weight:700;font-size:clamp(13px,1.5vw,22px);line-height:1.22;letter-spacing:-0.012em;animation:lifDrift 1700ms cubic-bezier(.16,.7,.2,1) 4600ms both">
+          <span style="white-space:nowrap">For pilot brands, setup is on us.</span>
+          <span style="white-space:nowrap;color:#CA0000">The customer funds every <span style="white-space:nowrap">Love It Forward</span>.</span>
+        </div>
+        <div style="margin-top:clamp(14px,2.4vh,34px);display:flex;flex-direction:column;gap:0;font-family:Apercu,sans-serif;font-size:clamp(11px,1.05vw,14px);line-height:1.5;color:#6B6664;animation:lifFade 1500ms ease 5600ms both">
+          <span>You bring the brand people love.</span>
+          <span>We&#8217;ll build the pilot around it.</span>
+        </div>
+      </section>
+    </sc-if>
+    <sc-if value="{{ s17 }}" hint-placeholder-val="{{ false }}">
+      <section data-screen-label="17 What we’ll learn together" style="width:100%;max-width:1240px;margin:auto;font-family:Apercu,sans-serif;animation:lifFade 900ms ease both">
+        <h2 style="margin:0;font-family:RomanaBT,serif;font-weight:400;font-size:clamp(20px,2.6vw,38px);line-height:1.08;white-space:nowrap;animation:lifDrift 1400ms cubic-bezier(.16,.7,.2,1) 200ms both">What we&#8217;ll learn together.</h2>
+        <div style="margin-top:clamp(13px,2.2vh,30px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:clamp(10px,1.7vw,26px) clamp(16px,2.6vw,40px)">
+          <div style="padding-top:12px;border-top:1px solid rgba(47,43,43,0.18);animation:lifDrift 1000ms cubic-bezier(.16,.7,.2,1) 700ms both">
+            <div style="font-weight:700;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#CA0000">Funded introductions</div>
+            <div style="margin-top:8px;font-size:clamp(14px,1.4vw,19px);line-height:1.45;color:#2F2B2B;text-wrap:pretty">How many customer-funded introductions were created.</div>
+          </div>
+          <div style="padding-top:12px;border-top:1px solid rgba(47,43,43,0.18);animation:lifDrift 1000ms cubic-bezier(.16,.7,.2,1) 900ms both">
+            <div style="font-weight:700;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#CA0000">Introduced customers</div>
+            <div style="margin-top:8px;font-size:clamp(14px,1.4vw,19px);line-height:1.45;color:#2F2B2B;text-wrap:pretty">How many receivers became new customers.</div>
+          </div>
+          <div style="padding-top:12px;border-top:1px solid rgba(47,43,43,0.18);animation:lifDrift 1000ms cubic-bezier(.16,.7,.2,1) 1100ms both">
+            <div style="font-weight:700;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#CA0000">Recipient conversion</div>
+            <div style="margin-top:8px;font-size:clamp(14px,1.4vw,19px);line-height:1.45;color:#2F2B2B;text-wrap:pretty">How often an introduction became a purchase.</div>
+          </div>
+          <div style="padding-top:12px;border-top:1px solid rgba(47,43,43,0.18);animation:lifDrift 1000ms cubic-bezier(.16,.7,.2,1) 1300ms both">
+            <div style="font-weight:700;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#CA0000">Receiver contribution</div>
+            <div style="margin-top:8px;font-size:clamp(14px,1.4vw,19px);line-height:1.45;color:#2F2B2B;text-wrap:pretty">What the receiver spent above the funded value.</div>
+          </div>
+          <div style="padding-top:12px;border-top:1px solid rgba(47,43,43,0.18);animation:lifDrift 1000ms cubic-bezier(.16,.7,.2,1) 1500ms both">
+            <div style="font-weight:700;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#CA0000">Introductions per giver</div>
+            <div style="margin-top:8px;font-size:clamp(14px,1.4vw,19px);line-height:1.45;color:#2F2B2B;text-wrap:pretty">Average number of funded introductions per participating customer.</div>
+          </div>
+          <div style="padding-top:12px;border-top:1px solid rgba(47,43,43,0.18);animation:lifDrift 1000ms cubic-bezier(.16,.7,.2,1) 1700ms both">
+            <div style="font-weight:700;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#CA0000">Funded continuation</div>
+            <div style="margin-top:8px;font-size:clamp(14px,1.4vw,19px);line-height:1.45;color:#2F2B2B;text-wrap:pretty">Whether receivers begin new paid acts.</div>
+          </div>
+          <div style="padding-top:12px;border-top:1px solid rgba(47,43,43,0.18);animation:lifDrift 1000ms cubic-bezier(.16,.7,.2,1) 1900ms both">
+            <div style="font-weight:700;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#CA0000">Full-price repeat</div>
+            <div style="margin-top:8px;font-size:clamp(14px,1.4vw,19px);line-height:1.45;color:#2F2B2B;text-wrap:pretty">Whether introduced customers return without LIF value.</div>
+          </div>
+          <div style="padding-top:12px;border-top:1px solid rgba(47,43,43,0.18);animation:lifDrift 1000ms cubic-bezier(.16,.7,.2,1) 2100ms both">
+            <div style="font-weight:700;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#CA0000">Community density</div>
+            <div style="margin-top:8px;font-size:clamp(14px,1.4vw,19px);line-height:1.45;color:#2F2B2B;text-wrap:pretty">How interconnected the brand&#8217;s customer network becomes.</div>
+          </div>
+        </div>
+        <div style="margin-top:clamp(12px,2vh,26px);display:flex;flex-direction:column;gap:2px;font-family:RomanaBT,serif;font-size:clamp(16px,1.9vw,27px);line-height:1.22;animation:lifDrift 1600ms cubic-bezier(.16,.7,.2,1) 2800ms both">
+          <span style="text-wrap:pretty">We don&#8217;t have these answers yet.</span>
+          <span style="text-wrap:pretty">That&#8217;s what the pilot is built to learn.</span>
+        </div>
+      </section>
+    </sc-if>
+    <sc-if value="{{ s18 }}" hint-placeholder-val="{{ false }}">
+      <section data-screen-label="18 Close" style="width:100%;max-width:1240px;margin:auto;animation:lifFade 900ms ease both">
+        <div style="font-family:RomanaBT,serif;font-size:clamp(15px,3.8vw,56px);line-height:1.14;letter-spacing:-0.015em;color:#FDFCF8">
+          <div style="white-space:nowrap;animation:lifDrift 1800ms cubic-bezier(.16,.7,.2,1) 300ms both">Transactions have infrastructure.</div>
+          <div style="margin-top:clamp(8px,1.6vh,20px);white-space:nowrap;animation:lifDrift 1800ms cubic-bezier(.16,.7,.2,1) 1400ms both">Introductions didn&#8217;t.</div>
+          <div style="margin-top:clamp(8px,1.6vh,20px);white-space:nowrap;animation:lifDrift 2000ms cubic-bezier(.16,.7,.2,1) 2600ms both">Until now.</div>
+        </div>
+        <div data-hold="1" style="margin-top:clamp(26px,4.8vh,62px);display:flex;flex-wrap:wrap;align-items:flex-start;gap:clamp(14px,2.4vw,30px);animation:lifFade 1600ms ease 4000ms both">
+          <a href="https://demo-merchant-lif.netlify.app/" target="_blank" rel="noopener" style="padding:13px 26px;border:1px solid rgba(253,252,248,0.7);color:#FDFCF8;font-family:Apercu,sans-serif;font-weight:700;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;transition:background 320ms ease, color 320ms ease" style-hover="background:#FDFCF8;color:#CA0000">See the product</a>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div onClick="{{ openShare }}" style="align-self:flex-start;padding:13px 26px;border:1px solid rgba(253,252,248,0.7);color:#FDFCF8;font-family:Apercu,sans-serif;font-weight:700;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;cursor:pointer;transition:background 320ms ease, color 320ms ease" style-hover="background:#FDFCF8;color:#CA0000">Share the love</div>
+            <div style="display:flex;flex-direction:column;gap:1px;font-family:Apercu,sans-serif;font-size:clamp(12px,1.1vw,14px);line-height:1.4;color:#FDFCF8">
+              <span>A brand come to mind?</span>
+              <span>Send this their way.</span>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:clamp(22px,4vh,52px);display:flex;align-items:center;gap:clamp(14px,2.4vw,28px);animation:lifFade 1800ms ease 5200ms both">
+          <img src="assets/lif-mark-shell.png" alt="" style="height:clamp(26px,3.4vw,44px);width:auto;display:block" />
+          <div style="font-family:RomanaBT,serif;font-size:clamp(16px,1.8vw,25px);color:#FDFCF8">Have love. Will share.</div>
+        </div>
+      </section>
+    </sc-if>
+  </main>
+
+  <footer style="position:relative;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:0 clamp(22px,6vw,88px) clamp(20px,3vw,36px)">
+    <sc-if value="{{ showIndex }}" hint-placeholder-val="{{ true }}">
+      <div style="{{ indexStyle }}">{{ indexLabel }}</div>
+    </sc-if>
+    <div data-hold="1" style="display:flex;align-items:center;gap:clamp(10px,2vw,22px);font-family:Apercu,sans-serif">
+      <div onClick="{{ replay }}" style="{{ replayStyle }}" style-hover="opacity:1">Replay</div>
+      <div onClick="{{ prev }}" style="{{ navBtnStyle }}" style-hover="opacity:1">&#8592;</div>
+      <div onClick="{{ next }}" style="{{ navBtnStyle }}" style-hover="opacity:1">&#8594;</div>
+    </div>
+  </footer>
+
+  <sc-if value="{{ shareOpen }}" hint-placeholder-val="{{ false }}">
+    <div data-hold="1" onClick="{{ closeShare }}" style="position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;padding:clamp(14px,3vw,40px);background:rgba(47,43,43,0.55);animation:lifFade 320ms ease both">
+      <div onClick="{{ stop }}" style="position:relative;width:100%;max-width:640px;max-height:92vh;overflow-y:auto;background:#FDFCF8;box-shadow:0 40px 90px -50px rgba(47,43,43,0.7);animation:lifLand 420ms cubic-bezier(.16,.7,.2,1) both">
+        <img src="img/paper.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;mix-blend-mode:multiply;opacity:0.5;pointer-events:none" />
+        <div onClick="{{ closeShare }}" style="position:absolute;top:14px;right:16px;z-index:2;font-family:Apercu,sans-serif;font-size:15px;color:#6B6664;cursor:pointer" style-hover="color:#CA0000">&#10005;</div>
+        <div style="position:relative;padding:clamp(22px,3.4vw,42px)">
+          <div style="display:flex;align-items:center;gap:11px">
+            <img src="assets/lif-mark-poppy.png" alt="" style="height:26px;width:auto;display:block" />
+            <img src="assets/lif-wordmark.png" alt="Love It Forward" style="height:12px;width:auto;display:block" />
+          </div>
+          <sc-if value="{{ shareSent }}" hint-placeholder-val="{{ false }}">
+            <div style="margin-top:clamp(26px,4.4vh,52px);padding-bottom:clamp(20px,3.4vh,42px)">
+              <div style="font-family:RomanaBT,serif;font-size:clamp(26px,3.4vw,44px);line-height:1.06;color:#2F2B2B">Sent. <span style="color:#CA0000">&#9829;</span></div>
+              <div style="margin-top:14px;font-family:RomanaBT,serif;font-size:clamp(15px,1.6vw,22px);color:#2F2B2B">Have love. Will share.</div>
+              <div style="margin-top:18px;display:flex;flex-wrap:wrap;gap:2px 10px;font-family:Apercu,sans-serif;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#6B6664">
+                <span>Give good.</span><span>Feel good.</span><span>Share the love.</span>
+              </div>
+            </div>
+          </sc-if>
+          <sc-if value="{{ shareForm }}" hint-placeholder-val="{{ true }}">
+          <div>
+            <div style="margin-top:clamp(18px,3vh,34px);font-family:RomanaBT,serif;font-size:clamp(20px,2.4vw,32px);line-height:1.08;color:#2F2B2B">Have love. Will share.</div>
+            <div style="margin-top:9px;display:flex;flex-direction:column;gap:1px;font-family:Apercu,sans-serif;font-size:clamp(13px,1.2vw,16px);line-height:1.45;color:#4B4646">
+              <span>A brand come to mind?</span>
+              <span>Send this their way.</span>
+            </div>
+            <form name="lif-brand-share" data-netlify="true" onSubmit="{{ submitShare }}" style="margin-top:clamp(18px,3vh,34px);display:flex;flex-direction:column;gap:clamp(14px,2.2vh,24px)">
+              <div style="display:flex;flex-direction:column;gap:clamp(11px,1.8vh,18px)">
+                <div style="font-family:Apercu,sans-serif;font-weight:700;font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:#CA0000">The brand</div>
+            <label style="display:flex;flex-direction:column;gap:5px">
+              <span style="font-family:Apercu,sans-serif;font-weight:700;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:#6B6664">Brand</span>
+              <input type="text" name="brand" required="required" placeholder="" style="{{ inputStyle }}" style-focus="border-bottom-color:#CA0000" />
+            </label>
+            <label style="display:flex;flex-direction:column;gap:5px">
+              <span style="font-family:Apercu,sans-serif;font-weight:700;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:#6B6664">Contact name</span>
+              <input type="text" name="contactName" required="required" placeholder="" style="{{ inputStyle }}" style-focus="border-bottom-color:#CA0000" />
+            </label>
+            <label style="display:flex;flex-direction:column;gap:5px">
+              <span style="font-family:Apercu,sans-serif;font-weight:700;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:#6B6664">Work email</span>
+              <input type="email" name="contactEmail" required="required" placeholder="" style="{{ inputStyle }}" style-focus="border-bottom-color:#CA0000" />
+            </label>
+            <label style="display:flex;flex-direction:column;gap:5px">
+              <span style="font-family:Apercu,sans-serif;font-weight:700;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:#6B6664">Role / title <span style="color:#A9A4A0">(optional)</span></span>
+              <input type="text" name="roleTitle" placeholder="" style="{{ inputStyle }}" style-focus="border-bottom-color:#CA0000" />
+            </label>
+            <label style="display:flex;flex-direction:column;gap:5px">
+              <span style="font-family:Apercu,sans-serif;font-weight:700;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:#6B6664">Website / Instagram <span style="color:#A9A4A0">(optional)</span></span>
+              <input type="text" name="websiteInstagram" placeholder="" style="{{ inputStyle }}" style-focus="border-bottom-color:#CA0000" />
+            </label>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:clamp(11px,1.8vh,18px);padding-top:clamp(11px,1.8vh,18px);border-top:1px solid rgba(47,43,43,0.16)">
+                <div style="font-family:Apercu,sans-serif;font-weight:700;font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:#CA0000">From</div>
+            <label style="display:flex;flex-direction:column;gap:5px">
+              <span style="font-family:Apercu,sans-serif;font-weight:700;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:#6B6664">Your name</span>
+              <input type="text" name="fromName" required="required" placeholder="" style="{{ inputStyle }}" style-focus="border-bottom-color:#CA0000" />
+            </label>
+            <label style="display:flex;flex-direction:column;gap:5px">
+              <span style="font-family:Apercu,sans-serif;font-weight:700;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:#6B6664">Your email</span>
+              <input type="email" name="fromEmail" required="required" placeholder="" style="{{ inputStyle }}" style-focus="border-bottom-color:#CA0000" />
+            </label>
+            <label style="display:flex;flex-direction:column;gap:5px">
+              <span style="font-family:Apercu,sans-serif;font-weight:700;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:#6B6664">Note <span style="color:#A9A4A0">(optional)</span></span>
+              <input type="text" name="note" placeholder="Thought you might want to see this." style="{{ inputStyle }}" style-focus="border-bottom-color:#CA0000" />
+            </label>
+              </div>
+              <input type="hidden" name="form-name" value="lif-brand-share" />
+              <input type="hidden" name="source" value="LIF GTM Sizzle" />
+              <input type="hidden" name="submittedAt" value="" />
+              <button type="submit" style="align-self:flex-start;margin-top:2px;padding:14px 30px;border:0;background:#CA0000;color:#FDFCF8;font-family:Apercu,sans-serif;font-weight:700;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;cursor:pointer;transition:background 320ms ease" style-hover="background:#2F2B2B">Send it their way</button>
+            </form>
+          </div>
+          </sc-if>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showIndex&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;clickToAdvance&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  state = { i: 0, amt: 25, shareOpen: false, shareSent: false };
+  total = 18;
+
+  surfaces = {
+    1: { bg: "#2F2B2B", inverse: true },
+    2: { bg: "#FDFCF8", grain: true },
+    3: { bg: "#FDFCF8" },
+    4: { bg: "#FDFCF8" },
+    5: { bg: "#FDFCF8" },
+    6: { bg: "#FDFCF8" },
+    7: { bg: "#FDFCF8" },
+    8: { bg: "#2F2B2B", inverse: true },
+    9: { bg: "#FDFCF8", grain: true },
+    10: { bg: "#FDFCF8", grain: true },
+    11: { bg: "#FDFCF8", grain: true },
+    12: { bg: "#FDFCF8" },
+    13: { bg: "#FDFCF8", grain: true },
+    14: { bg: "#FDFCF8" },
+    15: { bg: "#FDFCF8", grain: true },
+    16: { bg: "#FDFCF8", grain: true },
+    17: { bg: "#FDFCF8" },
+    18: { bg: "#CA0000", inverse: true }
+  };
+
+  go = (d) => {
+    this.setState((s) => {
+      const n = Math.min(this.total - 1, Math.max(0, s.i + d));
+      return n === s.i ? null : { i: n };
+    }, () => {
+      const m = document.querySelector("main");
+      if (m) m.scrollTop = 0;
+    });
+  };
+
+  // A tall page owns the wheel until the viewer reaches its end.
+  scrollBand(dir) {
+    const m = document.querySelector("main");
+    if (!m || m.scrollHeight - m.clientHeight < 24) return false;
+    const max = m.scrollHeight - m.clientHeight;
+    if (dir > 0 && m.scrollTop < max - 1) return true;
+    if (dir < 0 && m.scrollTop > 1) return true;
+    return false;
+  }
+
+  componentDidMount() {
+    this._key = (e) => {
+      if (this.state.shareOpen) { if (e.key === "Escape") this.closeShare(); return; }
+      if (e.key === "ArrowRight" || e.key === "ArrowDown" || e.key === " ") { e.preventDefault(); this.go(1); }
+      else if (e.key === "ArrowLeft" || e.key === "ArrowUp") { e.preventDefault(); this.go(-1); }
+    };
+    this._acc = 0; this._lock = 0;
+    this._wheel = (e) => {
+      if (this.state.shareOpen) return;
+      const t = Date.now();
+      if (t < this._lock) return;
+      if (this.scrollBand(e.deltaY)) { this._acc = 0; return; }
+      this._acc += e.deltaY;
+      if (Math.abs(this._acc) > 80) { this.go(this._acc > 0 ? 1 : -1); this._acc = 0; this._lock = t + 900; }
+    };
+    this._ts = (e) => { const t = e.touches[0]; this._y = t.clientY; this._x = t.clientX; };
+    this._te = (e) => {
+      const t = e.changedTouches[0];
+      const dy = this._y - t.clientY, dx = this._x - t.clientX;
+      if (Math.abs(dy) > 50 || Math.abs(dx) > 50) this.go((Math.abs(dx) > Math.abs(dy) ? dx : dy) > 0 ? 1 : -1);
+    };
+    window.addEventListener("keydown", this._key);
+    window.addEventListener("wheel", this._wheel, { passive: true });
+    window.addEventListener("touchstart", this._ts, { passive: true });
+    window.addEventListener("touchend", this._te, { passive: true });
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("keydown", this._key);
+    window.removeEventListener("wheel", this._wheel);
+    window.removeEventListener("touchstart", this._ts);
+    window.removeEventListener("touchend", this._te);
+  }
+
+  pad(n) { return n < 10 ? "0" + n : String(n); }
+
+  amtStyle(on) {
+    return {
+      fontFamily: "Apercu, sans-serif",
+      fontSize: "clamp(15px,1.4vw,19px)",
+      height: "clamp(52px,4.6vw,62px)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      border: "1px solid #2F2B2B",
+      borderRadius: "4px",
+      background: on ? "#2F2B2B" : "transparent",
+      color: on ? "#FDFCF8" : "#2F2B2B",
+      cursor: "pointer",
+      transition: "background 260ms ease, color 260ms ease"
+    };
+  }
+
+  DEMO_URL = "https://demo-merchant-lif.netlify.app/";
+
+  openShare = () => this.setState({ shareOpen: true, shareSent: false });
+  closeShare = () => this.setState({ shareOpen: false });
+
+  submitShare = (e) => {
+    e.preventDefault();
+    const fd = new FormData(e.target);
+    const get = (k) => (fd.get(k) || "").toString().trim();
+    const record = {
+      submittedAt: new Date().toISOString(),
+      brand: get("brand"),
+      contactName: get("contactName"),
+      contactEmail: get("contactEmail"),
+      roleTitle: get("roleTitle"),
+      websiteInstagram: get("websiteInstagram"),
+      fromName: get("fromName"),
+      fromEmail: get("fromEmail"),
+      note: get("note"),
+      source: "LIF GTM Sizzle"
+    };
+    if (!record.contactEmail || !record.brand || !record.contactName || !record.fromName || !record.fromEmail) return;
+    const stamp = e.target.querySelector('input[name="submittedAt"]');
+    if (stamp) stamp.value = record.submittedAt;
+    try {
+      const key = "lif.sizzle.shares";
+      const all = JSON.parse(localStorage.getItem(key) || "[]");
+      all.push(record);
+      localStorage.setItem(key, JSON.stringify(all));
+    } catch (err) {}
+    try {
+      fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(new FormData(e.target)).toString()
+      }).catch(function () {});
+    } catch (err) {}
+    this.setState({ shareSent: true });
+  };
+
+  renderVals() {
+    const i = this.state.i;
+    const surf = this.surfaces[i + 1];
+    const inv = !!surf.inverse;
+    const chromeInk = inv ? "rgba(253,252,248,0.85)" : "#6B6664";
+    const capLabel = {
+      fontFamily: "Apercu, sans-serif",
+      fontSize: "11px",
+      letterSpacing: "0.16em",
+      textTransform: "uppercase",
+      color: chromeInk,
+      transition: "color 700ms ease"
+    };
+    const v = {
+      indexLabel: this.pad(i + 1) + " / " + this.total,
+      showIndex: this.props.showIndex !== false,
+      indexStyle: capLabel,
+      replayStyle: Object.assign({}, capLabel, { cursor: "pointer", opacity: 0.6 }),
+      grain: !!surf.grain,
+      netFill: { position: "absolute", inset: 0, width: "100%", height: "100%" },
+      shareOpen: !!this.state.shareOpen,
+      shareSent: !!this.state.shareSent,
+      shareForm: !this.state.shareSent,
+      openShare: this.openShare,
+      closeShare: this.closeShare,
+      submitShare: this.submitShare,
+      stop: (e) => e.stopPropagation(),
+      inputStyle: {
+        width: "100%",
+        padding: "8px 0 9px",
+        border: 0,
+        borderBottom: "1px solid rgba(47,43,43,0.28)",
+        borderRadius: 0,
+        background: "transparent",
+        fontFamily: "Apercu, sans-serif",
+        fontSize: "15px",
+        color: "#2F2B2B",
+        outline: "none",
+        transition: "border-color 260ms ease"
+      },
+      stageStyle: {
+        position: "relative",
+        width: "100%",
+        minHeight: "100svh",
+        display: "flex",
+        flexDirection: "column",
+        background: surf.bg,
+        color: inv ? "#FDFCF8" : "#2F2B2B",
+        fontFamily: "Apercu, sans-serif",
+        overflow: "hidden",
+        transition: "background 1100ms cubic-bezier(.16,.7,.2,1), color 900ms ease"
+      },
+      markStyle: {
+        height: "18px", width: "auto", display: "block",
+        filter: inv ? "invert(1) brightness(1.7)" : "none",
+        transition: "filter 700ms ease"
+      },
+      wordmarkStyle: {
+        height: "11px", width: "auto", display: "block",
+        filter: inv ? "invert(1) brightness(1.7)" : "none",
+        transition: "filter 700ms ease"
+      },
+      navBtnStyle: {
+        width: "38px", height: "38px",
+        border: "1px solid " + (inv ? "rgba(253,252,248,0.45)" : "rgba(47,43,43,0.22)"),
+        display: "flex", alignItems: "center", justifyContent: "center",
+        fontSize: "15px", cursor: "pointer", opacity: 0.75,
+        color: inv ? "#FDFCF8" : "#2F2B2B",
+        transition: "opacity 320ms ease, border-color 700ms ease, color 700ms ease"
+      },
+      progressStyle: {
+        height: "1px",
+        background: inv ? "#FDFCF8" : "#CA0000",
+        width: ((i + 1) / this.total) * 100 + "%",
+        transition: "width 900ms cubic-bezier(.16,.7,.2,1), background 700ms ease"
+      },
+      next: () => this.go(1),
+      prev: () => this.go(-1),
+      replay: () => this.setState({ i: 0 }),
+      stageClick: (e) => {
+        if (this.props.clickToAdvance === false) return;
+        if (e.target && e.target.closest && e.target.closest("[data-hold]")) return;
+        this.go(1);
+      },
+      a15: () => this.setState({ amt: 15 }),
+      a25: () => this.setState({ amt: 25 }),
+      a50: () => this.setState({ amt: 50 }),
+      aOther: () => this.setState({ amt: 0 }),
+      amt15: this.amtStyle(this.state.amt === 15),
+      amt25: this.amtStyle(this.state.amt === 25),
+      amt50: this.amtStyle(this.state.amt === 50),
+      amtOther: this.amtStyle(this.state.amt === 0)
+    };
+    for (let n = 1; n <= this.total; n++) v["s" + n] = i === n - 1;
+    return v;
+  }
+}
+</script>
+</body>
+</html>
