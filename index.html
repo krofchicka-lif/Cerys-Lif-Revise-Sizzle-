@@ -31,13 +31,11 @@ a:hover { color: #CA0000; }
   main > section img { max-width: 100% !important; }
 }
 @media (max-width: 767px) {
-  html, body { overflow-x: hidden !important; }
-  body > div:first-of-type { overflow: visible !important; height: auto !important; min-height: 100svh !important; }
-  main { display: block !important; overflow: visible !important; padding: 16px 20px calc(28px + env(safe-area-inset-bottom)) !important; }
-  main > section { display: block !important; width: 100% !important; max-width: 100% !important; min-height: 0 !important; height: auto !important; margin: 0 !important; }
+  main { align-items: flex-start !important; overflow-y: auto !important; -webkit-overflow-scrolling: touch; padding: 18px 20px calc(30px + env(safe-area-inset-bottom)) !important; }
+  main > section { display: block !important; width: 100% !important; max-width: 100% !important; min-height: 0 !important; }
   main > section > * { width: auto !important; max-width: 100% !important; }
   main > section > * + * { margin-top: 18px !important; }
-  main > section img { display: block !important; width: 100% !important; max-width: 100% !important; height: auto !important; max-height: 52vh !important; object-fit: cover !important; margin: 0 !important; }
+  main > section img { display: block !important; width: 100% !important; max-width: 100% !important; height: auto !important; max-height: 46vh !important; object-fit: cover !important; margin: 0 !important; }
   main > section * { white-space: normal !important; }
   main > section [data-lif] { white-space: nowrap !important; }
   main > section [style*="RomanaBT"] { font-size: 23px !important; line-height: 1.16 !important; letter-spacing: -0.012em !important; }
@@ -45,8 +43,16 @@ a:hover { color: #CA0000; }
   main > section h2 { font-size: 25px !important; line-height: 1.12 !important; }
   main > section [style*="letter-spacing:0.2em"], main > section [style*="letter-spacing:0.16em"], main > section [style*="letter-spacing:0.28em"], main > section [style*="letter-spacing:0.14em"] { font-size: 10px !important; line-height: 1.5 !important; }
   main > section [style*="repeat(4,minmax(0,1fr))"] { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  main > section [style*="repeat(5,minmax(0,1fr))"] > div > div:first-child { width: 30px !important; height: 30px !important; }
+  section[data-screen-label^="13"] > div:first-child { position: relative !important; inset: auto !important; top: auto !important; left: auto !important; width: 100% !important; height: 300px !important; -webkit-mask-image: none !important; mask-image: none !important; }
+  section[data-screen-label^="13"] > div:nth-child(2) { display: none !important; }
+  section[data-screen-label^="13"] > div:last-child { max-width: 100% !important; }
+  header { padding: 16px 20px 0 !important; }
+  footer { padding: 0 20px calc(16px + env(safe-area-inset-bottom)) !important; }
+  footer [style*="38px"] { width: 44px !important; height: 44px !important; }
+  section[data-screen-label^="19"] a, section[data-screen-label^="19"] [style*="cursor:pointer"] { display: block !important; width: 100% !important; text-align: center !important; padding-top: 15px !important; padding-bottom: 15px !important; }
 
-  /* screen 12 — the horizontal timeline becomes a vertical sequence */
+  /* fix 3 — screen 12 timeline reads vertically instead of overlapping */
   section[data-screen-label^="12"] [style*="repeat(5,minmax(0,1fr))"] { display: flex !important; flex-direction: column !important; align-items: flex-start !important; gap: 14px !important; position: static !important; }
   section[data-screen-label^="12"] [style*="repeat(5,minmax(0,1fr))"] > span { display: none !important; }
   section[data-screen-label^="12"] [style*="repeat(5,minmax(0,1fr))"] > div { flex-direction: row !important; align-items: center !important; gap: 14px !important; width: 100% !important; }
@@ -56,20 +62,9 @@ a:hover { color: #CA0000; }
   section[data-screen-label^="12"] [style*="height:clamp(30px,4vw,46px)"] > span, section[data-screen-label^="12"] [style*="height:clamp(34px,4.6vw,56px)"] > span { display: none !important; }
   section[data-screen-label^="12"] [style*="height:clamp(30px,4vw,46px)"] > div, section[data-screen-label^="12"] [style*="height:clamp(34px,4.6vw,56px)"] > div { position: static !important; text-align: left !important; }
 
-  /* screen 13 — network sits in flow above the copy */
-  section[data-screen-label^="13"] > div:first-child { position: relative !important; inset: auto !important; top: auto !important; left: auto !important; width: 100% !important; height: 300px !important; -webkit-mask-image: none !important; mask-image: none !important; }
-  section[data-screen-label^="13"] > div:nth-child(2) { display: none !important; }
-  section[data-screen-label^="13"] > div:last-child { max-width: 100% !important; }
-
-  /* screen 19 — mark stays small, signature never touches the edge */
+  /* fix 4 — screen 19 mark stays small and inside the viewport */
   section[data-screen-label^="19"] img { width: auto !important; height: 30px !important; max-height: 30px !important; flex: 0 0 auto !important; }
   section[data-screen-label^="19"] > div:last-child { flex-wrap: wrap !important; gap: 12px !important; }
-  section[data-screen-label^="19"] a, section[data-screen-label^="19"] [style*="cursor:pointer"] { display: block !important; width: 100% !important; text-align: center !important; padding-top: 15px !important; padding-bottom: 15px !important; }
-  section[data-screen-label^="19"] > div[data-hold] > div { width: 100% !important; }
-
-  header { padding: 16px 20px 0 !important; }
-  footer { position: sticky !important; bottom: 0 !important; z-index: 20 !important; padding: 10px 20px calc(10px + env(safe-area-inset-bottom)) !important; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
-  footer [style*="38px"] { width: 44px !important; height: 44px !important; }
 }
 @media (prefers-reduced-motion: reduce) {
   main > section, main > section * { animation-duration: 1ms !important; animation-delay: 0ms !important; }
