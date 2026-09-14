@@ -31,11 +31,13 @@ a:hover { color: #CA0000; }
   main > section img { max-width: 100% !important; }
 }
 @media (max-width: 767px) {
-  main { align-items: flex-start !important; overflow-y: auto !important; -webkit-overflow-scrolling: touch; padding: 18px 20px 14px !important; }
-  main > section { display: block !important; width: 100% !important; max-width: 100% !important; min-height: 0 !important; }
+  html, body { overflow-x: hidden !important; }
+  body > div:first-of-type { overflow: visible !important; height: auto !important; min-height: 100svh !important; }
+  main { display: block !important; overflow: visible !important; padding: 16px 20px calc(28px + env(safe-area-inset-bottom)) !important; }
+  main > section { display: block !important; width: 100% !important; max-width: 100% !important; min-height: 0 !important; height: auto !important; margin: 0 !important; }
   main > section > * { width: auto !important; max-width: 100% !important; }
   main > section > * + * { margin-top: 18px !important; }
-  main > section img { display: block !important; width: 100% !important; max-width: 100% !important; height: auto !important; max-height: 46vh !important; object-fit: cover !important; margin: 0 !important; }
+  main > section img { display: block !important; width: 100% !important; max-width: 100% !important; height: auto !important; max-height: 52vh !important; object-fit: cover !important; margin: 0 !important; }
   main > section * { white-space: normal !important; }
   main > section [data-lif] { white-space: nowrap !important; }
   main > section [style*="RomanaBT"] { font-size: 23px !important; line-height: 1.16 !important; letter-spacing: -0.012em !important; }
@@ -43,14 +45,31 @@ a:hover { color: #CA0000; }
   main > section h2 { font-size: 25px !important; line-height: 1.12 !important; }
   main > section [style*="letter-spacing:0.2em"], main > section [style*="letter-spacing:0.16em"], main > section [style*="letter-spacing:0.28em"], main > section [style*="letter-spacing:0.14em"] { font-size: 10px !important; line-height: 1.5 !important; }
   main > section [style*="repeat(4,minmax(0,1fr))"] { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
-  main > section [style*="repeat(5,minmax(0,1fr))"] > div > div:first-child { width: 30px !important; height: 30px !important; }
+
+  /* screen 12 — the horizontal timeline becomes a vertical sequence */
+  section[data-screen-label^="12"] [style*="repeat(5,minmax(0,1fr))"] { display: flex !important; flex-direction: column !important; align-items: flex-start !important; gap: 14px !important; position: static !important; }
+  section[data-screen-label^="12"] [style*="repeat(5,minmax(0,1fr))"] > span { display: none !important; }
+  section[data-screen-label^="12"] [style*="repeat(5,minmax(0,1fr))"] > div { flex-direction: row !important; align-items: center !important; gap: 14px !important; width: 100% !important; }
+  section[data-screen-label^="12"] [style*="repeat(5,minmax(0,1fr))"] > div > div:first-child { width: 26px !important; height: 26px !important; flex: 0 0 auto !important; }
+  section[data-screen-label^="12"] [style*="repeat(5,minmax(0,1fr))"] > div > div:last-child { max-width: none !important; text-align: left !important; }
+  section[data-screen-label^="12"] [style*="height:clamp(30px,4vw,46px)"], section[data-screen-label^="12"] [style*="height:clamp(34px,4.6vw,56px)"] { position: static !important; height: auto !important; }
+  section[data-screen-label^="12"] [style*="height:clamp(30px,4vw,46px)"] > span, section[data-screen-label^="12"] [style*="height:clamp(34px,4.6vw,56px)"] > span { display: none !important; }
+  section[data-screen-label^="12"] [style*="height:clamp(30px,4vw,46px)"] > div, section[data-screen-label^="12"] [style*="height:clamp(34px,4.6vw,56px)"] > div { position: static !important; text-align: left !important; }
+
+  /* screen 13 — network sits in flow above the copy */
   section[data-screen-label^="13"] > div:first-child { position: relative !important; inset: auto !important; top: auto !important; left: auto !important; width: 100% !important; height: 300px !important; -webkit-mask-image: none !important; mask-image: none !important; }
   section[data-screen-label^="13"] > div:nth-child(2) { display: none !important; }
   section[data-screen-label^="13"] > div:last-child { max-width: 100% !important; }
-  header { padding: 16px 20px 0 !important; }
-  footer { padding: 0 20px 16px !important; }
-  footer [style*="38px"] { width: 44px !important; height: 44px !important; }
+
+  /* screen 19 — mark stays small, signature never touches the edge */
+  section[data-screen-label^="19"] img { width: auto !important; height: 30px !important; max-height: 30px !important; flex: 0 0 auto !important; }
+  section[data-screen-label^="19"] > div:last-child { flex-wrap: wrap !important; gap: 12px !important; }
   section[data-screen-label^="19"] a, section[data-screen-label^="19"] [style*="cursor:pointer"] { display: block !important; width: 100% !important; text-align: center !important; padding-top: 15px !important; padding-bottom: 15px !important; }
+  section[data-screen-label^="19"] > div[data-hold] > div { width: 100% !important; }
+
+  header { padding: 16px 20px 0 !important; }
+  footer { position: sticky !important; bottom: 0 !important; z-index: 20 !important; padding: 10px 20px calc(10px + env(safe-area-inset-bottom)) !important; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+  footer [style*="38px"] { width: 44px !important; height: 44px !important; }
 }
 @media (prefers-reduced-motion: reduce) {
   main > section, main > section * { animation-duration: 1ms !important; animation-delay: 0ms !important; }
@@ -772,6 +791,8 @@ class Component extends DCLogic {
     return false;
   }
 
+  isMobile() { return window.matchMedia("(max-width: 767px)").matches; }
+
   componentDidMount() {
     this._key = (e) => {
       if (this.state.shareOpen) { if (e.key === "Escape") this.closeShare(); return; }
@@ -780,15 +801,17 @@ class Component extends DCLogic {
     };
     this._acc = 0; this._lock = 0;
     this._wheel = (e) => {
-      if (this.state.shareOpen) return;
+      if (this.state.shareOpen || this.isMobile()) return;
       const t = Date.now();
       if (t < this._lock) return;
       if (this.scrollBand(e.deltaY)) { this._acc = 0; return; }
       this._acc += e.deltaY;
       if (Math.abs(this._acc) > 80) { this.go(this._acc > 0 ? 1 : -1); this._acc = 0; this._lock = t + 900; }
     };
-    this._ts = (e) => { const t = e.touches[0]; this._y = t.clientY; this._x = t.clientX; };
+    this._ts = (e) => {
+      if (this.isMobile()) return; const t = e.touches[0]; this._y = t.clientY; this._x = t.clientX; };
     this._te = (e) => {
+      if (this.isMobile()) return;
       const t = e.changedTouches[0];
       const dy = this._y - t.clientY, dx = this._x - t.clientX;
       if (Math.abs(dy) > 50 || Math.abs(dx) > 50) this.go((Math.abs(dx) > Math.abs(dy) ? dx : dy) > 0 ? 1 : -1);
@@ -945,7 +968,7 @@ class Component extends DCLogic {
       prev: () => this.go(-1),
       replay: () => this.setState({ i: 0 }),
       stageClick: (e) => {
-        if (this.props.clickToAdvance === false) return;
+        if (this.props.clickToAdvance === false || this.isMobile()) return;
         if (e.target && e.target.closest && e.target.closest("[data-hold]")) return;
         this.go(1);
       },
