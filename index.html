@@ -47,7 +47,7 @@ a:hover { color: #CA0000; }
 }
 
 @media (max-width: 767px) {
-  main { align-items: flex-start !important; overflow-y: auto !important; -webkit-overflow-scrolling: touch; padding: 18px 20px calc(30px + env(safe-area-inset-bottom)) !important; }
+  main { align-items: flex-start !important; overflow-y: auto !important; -webkit-overflow-scrolling: touch; padding: 18px 16px calc(30px + env(safe-area-inset-bottom)) !important; }
   main > section { display: block !important; width: 100% !important; max-width: 100% !important; min-height: 0 !important; }
   main > section > * { width: auto !important; max-width: 100% !important; }
   main > section > * + * { margin-top: 18px !important; }
@@ -63,6 +63,10 @@ a:hover { color: #CA0000; }
   section[data-screen-label^="13"] > div:first-child { position: relative !important; inset: auto !important; top: auto !important; left: auto !important; width: 100% !important; height: 300px !important; -webkit-mask-image: none !important; mask-image: none !important; }
   section[data-screen-label^="13"] > div:nth-child(2) { display: none !important; }
   section[data-screen-label^="13"] > div:last-child { max-width: 100% !important; }
+  /* Lifehood intro holds one line: full width, trimmed padding, then type */
+  section[data-screen-label^="16"] { padding: 0 !important; }
+  main > section [data-m="lifehood-intro"] { max-width: 100% !important; white-space: nowrap !important; font-size: min(4vw, 22px) !important; letter-spacing: -0.02em !important; }
+  main > section [data-m="lifehood-intro"] [data-lif] { white-space: nowrap !important; }
   /* page 12 — one column, comparison blocks after the problem */
   section[data-screen-label^="10"] { grid-template-columns: 1fr !important; row-gap: 22px !important; }
   section[data-screen-label^="10"] > div { grid-column: 1 !important; }
@@ -552,7 +556,7 @@ a:hover { color: #CA0000; }
         </div>
         <div>
           <div style="font-family:Apercu,sans-serif;font-weight:700;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#CA0000;animation:lifFade 1400ms ease 0ms both">So much is built around us.</div>
-          <p style="margin:clamp(9px,1.5vh,16px) 0 0;max-width:30ch;font-family:Apercu,sans-serif;font-weight:700;font-size:clamp(17px,2vw,28px);line-height:1.1;letter-spacing:-0.016em;animation:lifDrift 2000ms cubic-bezier(.16,.7,.2,1) 800ms both">Some of the best feelings<br />come from thinking about someone else.</p>
+          <p style="margin:clamp(9px,1.5vh,16px) 0 0;max-width:30ch;font-family:Apercu,sans-serif;font-weight:700;font-size:clamp(17px,2vw,28px);line-height:1.1;letter-spacing:-0.016em;animation:lifDrift 2000ms cubic-bezier(.16,.7,.2,1) 800ms both">Some of the best feelings <br />come from thinking about someone else.</p>
           <div style="margin-top:clamp(9px,1.5vh,17px);display:flex;flex-direction:column;gap:clamp(7px,1.1vh,13px);max-width:60ch;font-family:Apercu,sans-serif;font-size:clamp(13px,1.15vw,16px);line-height:1.55;color:#4B4646">
             <span style="text-wrap:pretty;animation:lifDrift 2000ms cubic-bezier(.16,.7,.2,1) 1600ms both">I&#8217;m Amy Krofchick. I founded a business that grew to more than 100 locations.</span>
             <span style="text-wrap:pretty;animation:lifDrift 2000ms cubic-bezier(.16,.7,.2,1) 2400ms both">I know what it takes to create something people love because I watched growth happen when one person brought another in.</span>
@@ -584,7 +588,7 @@ a:hover { color: #CA0000; }
           <div style="margin-top:11px;text-align:center;font-family:Apercu,sans-serif;font-weight:700;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#6B6664">Lifehood &#183; Los Angeles &#183; 2020</div>
         </div>
         <div>
-          <h2 style="margin:0;max-width:24ch;font-family:Apercu,sans-serif;font-weight:700;font-size:clamp(17px,1.95vw,27px);line-height:1.1;letter-spacing:-0.014em;text-wrap:balance;animation:lifDrift 2000ms cubic-bezier(.16,.7,.2,1) 800ms both">Before <span data-lif="1" style="white-space:nowrap">Love It Forward</span>, there was Lifehood.</h2>
+          <h2 style="margin:0;max-width:24ch;font-family:Apercu,sans-serif;font-weight:700;font-size:clamp(17px,1.95vw,27px);line-height:1.1;letter-spacing:-0.014em;text-wrap:balance;animation:lifDrift 2000ms cubic-bezier(.16,.7,.2,1) 800ms both" data-m="lifehood-intro">Before <span data-lif="1" style="white-space:nowrap">Love It Forward</span>, there was Lifehood.</h2>
           <div style="margin-top:clamp(11px,1.9vh,22px);display:flex;flex-direction:column;gap:clamp(6px,1vh,12px);max-width:70ch;font-family:Apercu,sans-serif;font-size:clamp(12px,1.15vw,16px);line-height:1.45;color:#4B4646">
             <span style="text-wrap:pretty;animation:lifDrift 2000ms cubic-bezier(.16,.7,.2,1) 1600ms both">In 2020, I opened a wellness center in Los Angeles around one simple idea: make it easy to do something good for someone else.</span>
             <span style="text-wrap:pretty;animation:lifDrift 2000ms cubic-bezier(.16,.7,.2,1) 2400ms both">Customers could anonymously send an experience to someone they cared about.</span>
